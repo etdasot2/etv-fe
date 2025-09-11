@@ -50,9 +50,9 @@ const Modal = () => {
                                     content?.onConfirm();
                                     closeModal();
                                 }}
-                                className="h-[44px] w-full flex items-center justify-center text-center font-sora text-[16px] rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+                                className="h-[44px] w-full bg-gradient-to-r from-[#b37106] via-[#c18610] to-[#7c4804] flex items-center justify-center text-center font-sora text-[16px] rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
                                 style={{
-                                background: 'linear-gradient(-40deg, #f40208, #ff464b)',
+                                // background: 'linear-gradient(-40deg, #f40208, #ff464b)',
                                 }}
                             >
                                 {t('global.ok')}

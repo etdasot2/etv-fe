@@ -266,7 +266,7 @@ const resources = {
 
                 "buy": {
                     "modal": {
-                        "text": "Are you sure you want to purchase"
+                        "text": "Please confirm that you want to complete this purchase"
                     }
                 }
             },

@@ -9,7 +9,7 @@ const getBaseUrl = () => {
 
     return isDevelopment
         ? 'http://localhost:5003/api'
-        : 'https://Eternova Films-be-eight.vercel.app/api';
+        : 'https://api.eternovafilms.com/api';
 };
 
 export const apiClient = axios.create({

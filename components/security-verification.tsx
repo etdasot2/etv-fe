@@ -97,10 +97,10 @@ export function SecurityVerification({ onComplete, onClose, isOpen }: SecurityVe
               <button
                 onClick={handleConfirm}
                 className={cn(
-                  "w-full h-[44px] font-sora text-[14px] rounded-full text-white mb-5",
-                )}
+                  "w-full h-[44px] font-sora bg-gradient-to-r from-[#b37106] via-[#c18610] to-[#7c4804] text-[14px] rounded-full text-white mb-5",
+                )} 
                 style={{
-                  background: 'linear-gradient(-40deg, #f40208, #ff464b)',
+                  // background: 'linear-gradient(-40deg, #f40208, #ff464b)',
 
                 }}
               >

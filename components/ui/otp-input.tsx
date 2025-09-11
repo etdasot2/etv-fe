@@ -48,7 +48,7 @@ export const OTPInput = forwardRef<HTMLInputElement, OTPInputProps>(function OTP
             className={cn(
               "w-16 h-16 bg-[#273347] rounded-lg border-2 text-white text-4xl outline-none transition-colors text-center disabled:opacity-1",
               inputClassName,
-              index === activeIndex ? "border-[#933c3f]" : "border-white/[0.08]",
+              index === activeIndex ? "border-[#eebc7a]" : "border-white/[0.08]",
             )}
             value={value[index] || ""}
             readOnly={readOnly}
@@ -58,7 +58,7 @@ export const OTPInput = forwardRef<HTMLInputElement, OTPInputProps>(function OTP
 
           />
           {index === activeIndex && (
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-px h-5 bg-[#933c3f] animate-smooth-blink"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-px h-5 bg-[#eebc7a] animate-smooth-blink"></div>
           )}
         </div>
       ))}
