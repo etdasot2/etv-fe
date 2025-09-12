@@ -194,8 +194,24 @@ export default function ScoreVideo({
     }, [packageId]);
 
 
+    const [requesting, setRequesting] = useState(false);
+    const requestingRef = useRef(false);
+
 
     const handleLike = async (video: Reel): Promise<void> => {
+        console.log(`[ScoreVideo-${debugSessionId.current}] handleLike called, requestingRef.current:`, requestingRef.current)
+        
+        // Check if already requesting using ref for synchronous check
+        if (requestingRef.current) {
+            console.log(`[ScoreVideo-${debugSessionId.current}] Already requesting, showing don't repeat message`)
+            setInfoText(t("global.dontRepeat"))
+            return
+        }
+
+        // Set the ref to true immediately to prevent duplicate requests
+        requestingRef.current = true;
+        console.log(`[ScoreVideo-${debugSessionId.current}] Set requestingRef.current to true:`, requestingRef.current)
+        setRequesting(true);
         setGlobalLoading(true);
         setIsSubscribing(true);
         const { selectedPackage, likesToday, dailyLimit } = packageDataRef.current
@@ -204,6 +220,8 @@ export default function ScoreVideo({
             setInfoText(t("reels.errors.selectValidPackage"))
             setGlobalLoading(false);
             setIsSubscribing(false);
+            setRequesting(false);
+            requestingRef.current = false;
             return
         }
 
@@ -211,6 +229,8 @@ export default function ScoreVideo({
             setInfoText(t("reels.errors.dailyLimitReached"))
             setGlobalLoading(false);
             setIsSubscribing(false);
+            setRequesting(false);
+            requestingRef.current = false;
             return
         }
 
@@ -218,6 +238,8 @@ export default function ScoreVideo({
             setInfoText(t("reels.errors.alreadyLiked"))
             setGlobalLoading(false);
             setIsSubscribing(false);
+            setRequesting(false);
+            requestingRef.current = false;
             return
         }
 
@@ -268,13 +290,16 @@ export default function ScoreVideo({
                 }
                 setGlobalLoading(false);
                 setIsSubscribing(false);
-
+                setRequesting(false);
+                requestingRef.current = false;
+                console.log(`[ScoreVideo-${debugSessionId.current}] Request completed successfully, reset requestingRef.current to false`)
 
             } else {
                 setInfoText(t("global.error.tryAgain"))
                 setGlobalLoading(false);
                 setIsSubscribing(false);
-
+                setRequesting(false);
+                requestingRef.current = false;
 
             }
         } catch (error: any) {
@@ -286,7 +311,8 @@ export default function ScoreVideo({
             }
             setGlobalLoading(false);
             setIsSubscribing(false);
-
+            setRequesting(false);
+            requestingRef.current = false;
 
         }
     }

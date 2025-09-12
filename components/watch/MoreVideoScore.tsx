@@ -226,7 +226,7 @@ const MoreVideoScore: React.FC<MoreVideoScoreProps> = ({ source, p, showSearch, 
                   className="w-full flex flex-col"
                   ref={index === trendingVideos.length - 1 ? lastVideoElementRef : null}
                   onClick={() => {
-                    router.replace(`/revenue/score?v=${video._id}${p ? "&p=" + p : ""}&source=${source}`)
+                    router.replace(`/revenue/score?v=${video._id}${p ? "&p=" + p : ""} `)
                   }}
                 >
                   <div className="relative">

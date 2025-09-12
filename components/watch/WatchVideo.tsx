@@ -323,7 +323,7 @@ export default function WatchVideo({
             earnedMoney: selectedUserPackage.earningsToday || 0
         };
 
-        router.replace(`/watch?v=${videoId}&p=${selectedUserPackage.package._id}${source && "&source="+source}`);
+        router.replace(`/revenue/scoring?p=${selectedUserPackage.package._id}`);
     }, [router, packageData.userPackagesWithLikes]);
 
     return (
