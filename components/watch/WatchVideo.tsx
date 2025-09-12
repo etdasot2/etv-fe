@@ -137,7 +137,7 @@ export default function WatchVideo({
 
 
     const initializePackages = useCallback(async (): Promise<void> => {
-        // if (initialLoadDoneRef.current) return;
+        if (initialLoadDoneRef.current) return;
         
         setIsLoading(true);
         try {

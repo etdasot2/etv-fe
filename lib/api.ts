@@ -660,7 +660,7 @@ export const fetchPackagesAndLikes = async () => {
     if (!token) throw new Error('No token found');
 
     const response = await apiClient.get('/global/get-packages-and-likes', {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}`, 'Cache-Control': 'no-store' }
     });
 
     return response.data;
