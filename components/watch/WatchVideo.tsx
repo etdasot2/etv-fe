@@ -137,8 +137,8 @@ export default function WatchVideo({
 
 
     const initializePackages = useCallback(async (): Promise<void> => {
-        if (initialLoadDoneRef.current) return;
-        
+        // if (initialLoadDoneRef.current) return;
+
         setIsLoading(true);
         try {
             const { allPackages, userPackagesWithLikes, instagramLinked } = await fetchPackagesAndLikes();
@@ -157,7 +157,7 @@ export default function WatchVideo({
                 instagramLinked
             });
 
-            initialLoadDoneRef.current = true;
+            // initialLoadDoneRef.current = true;
             console.log('hiii')
         } catch (error) {
             console.error('Failed to initialize packages:', error);
@@ -271,7 +271,6 @@ export default function WatchVideo({
     }
 
 
-
     const handleMissionChange = useCallback((pkgId: string): void => {
         const selectedUserPackage = packageDataRef.current.userPackagesWithLikes.find(
             (pkg: UserPackage) => pkg.package.packageName === pkgId
@@ -304,7 +303,31 @@ export default function WatchVideo({
         };
 
         router.replace(`/watch?v=${videoId}&p=${selectedUserPackage.package._id}${source && "&source="+source}`);
-    }, [router, packageData.userPackagesWithLikes]);
+    }, [router, packageData.userPackagesWithLikes, videoId, source]);
+
+    useEffect(() => {
+        const handleVisibilityChange = () => {
+            if (!document.hidden) {
+                // Reset the guard and refetch
+                initialLoadDoneRef.current = false;
+                initializePackages();
+            }
+        };
+    
+        const handleFocus = () => {
+            // Reset the guard and refetch
+            initialLoadDoneRef.current = false;
+            initializePackages();
+        };
+    
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+        window.addEventListener('focus', handleFocus);
+    
+        return () => {
+            document.removeEventListener('visibilitychange', handleVisibilityChange);
+            window.removeEventListener('focus', handleFocus);
+        };
+    }, [initializePackages]);
 
     return (
         <>
