@@ -232,12 +232,12 @@ const MoreVideos: React.FC<MoreVideosProps> = ({ source, p, showSearch, videoId 
                   <div className="relative">
                     <img
                       src={video?.youtube?.thumbnail || "/placeholder.svg"}
-                      className="w-full h-[250px]  rounded-[15px]"
+                      className="w-full h-[250px]  rounded-[13px]"
                       alt={video.headline}
                     />
-                    {/* <div className="absolute bottom-[10px] right-[10px] rounded-sm bg-[#00000099] text-[13px] font-medium pl-1 pr-1">
-                      {video.duration}
-                    </div> */}
+                    <div className="absolute top-0 left-0 rounded-[13px_0px_14px] text-[#A06A05] bg-gradient-to-r from-[#FFE88B] to-[#FFD457] text-[13px] font-medium p-[5px_13px] font-sora ">
+                      Watch
+                    </div>
                   </div>
 
                   <div className="flex w-full mt-3">
