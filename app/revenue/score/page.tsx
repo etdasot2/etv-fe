@@ -18,7 +18,7 @@ const WatchPage: React.FC = () => {
 
             <BackTitle
               title={t('revenue.score.title')}
-
+              isScore={true}
               back={true}
             />
         
