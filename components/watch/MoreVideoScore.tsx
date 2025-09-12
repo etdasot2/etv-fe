@@ -13,15 +13,15 @@ import { useLoading } from "@/context/LoadingContext"
 import { MORE_ICON } from "../custom-icons"
 import { useDebounce } from "@/hooks/useDebounce"
 
-interface MoreVideosProps {
+interface MoreVideoScoreProps {
   source: string
   p: string
   showSearch?: boolean; 
   videoId?: string;
 }
 
-const MoreVideos: React.FC<MoreVideosProps> = ({ source, p, showSearch, videoId }) => {
-  const { t } = useTranslation()
+const MoreVideoScore: React.FC<MoreVideoScoreProps> = ({ source, p, showSearch, videoId }) => {
+    const { t } = useTranslation()
   const router = useRouter()
   const { setGlobalLoading } = useLoading()
 
@@ -226,7 +226,7 @@ const MoreVideos: React.FC<MoreVideosProps> = ({ source, p, showSearch, videoId 
                   className="w-full flex flex-col"
                   ref={index === trendingVideos.length - 1 ? lastVideoElementRef : null}
                   onClick={() => {
-                    router.push(`/revenue/score?v=${video._id}${p ? "&p=" + p : ""}&source=${source}`)
+                    router.replace(`/revenue/score?v=${video._id}${p ? "&p=" + p : ""}&source=${source}`)
                   }}
                 >
                   <div className="relative">
@@ -276,4 +276,4 @@ const MoreVideos: React.FC<MoreVideosProps> = ({ source, p, showSearch, videoId 
   )
 }
 
-export default MoreVideos
+export default MoreVideoScore

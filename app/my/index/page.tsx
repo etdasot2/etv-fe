@@ -13,7 +13,7 @@ import AnimationPage from '@/components/AnimationPage'
 
 const ProfilePage: React.FC = () => {
   const router = useRouter();
-  const { t } = useTranslation();
+const { t } = useTranslation();
   
 
   return (

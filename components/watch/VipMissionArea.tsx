@@ -1,125 +1,154 @@
-'use client';
+"use client"
 
-import React, { useEffect, useState } from 'react';
-import { ChevronDown } from 'lucide-react';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { cn } from '@/lib/utils';
-import { USDTIconDefault } from '../icons/global';
-import { useTranslation } from 'react-i18next';
-import Link from 'next/link';
-import VipMissionAreaPopup from './VipMissionAreaPopup';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState } from "react"
+import { ChevronDown } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 
 interface VipMissionAreaProps {
-    title: string;
-    earnedMoney: number;
-    purchasedPackages: any[]; // Purchased packages
-    allPackages: any[]; // All packages (including non-purchased)
-    onMissionChange: (missionName: string, pkgId: string) => void; // Callback to change mission
-    selectedMission: string; // Selected mission/package
-    source: string;
+  title: string
+  earnedMoney: number
+  purchasedPackages: any[] // Purchased packages
+  allPackages: any[] // All packages (including non-purchased)
+  onMissionChange: (missionName: string, pkgId: string) => void // Callback to change mission
+  selectedMission: string // Selected mission/package
+  source: string
+}
+
+const mockT = (key: string) => {
+  const translations: Record<string, string> = {
+    "reels.missionAreaLabel": "mission area",
+    "reels.popup.selectVipMission.title": "Select VIP Mission",
+  }
+  return translations[key] || key
 }
 
 export default function VipMissionArea({
-    earnedMoney,
-    purchasedPackages,
-    allPackages,
-    onMissionChange,
-    selectedMission,
-    source
+  earnedMoney,
+  purchasedPackages,
+  allPackages,
+  onMissionChange,
+  selectedMission,
+  source,
 }: VipMissionAreaProps) {
-    const { t } = useTranslation();
+  const t = mockT
+  const [isOpen, setIsOpen] = useState(false)
+  const [isSticky, setIsSticky] = useState(false)
 
-    const [isOpen, setIsOpen] = useState(false);
+  // Check if the package is purchased
+  const isPurchased = (pkgId: string) => {
+    return purchasedPackages.some((p: any) => p.package._id === pkgId)
+  }
 
-    const router = useRouter();
+  // Get the number of likes today for a purchased package
+  const getTodayLikes = (pkgId: string) => {
+    const purchased = purchasedPackages.find((p: any) => p.package._id === pkgId)
+    return purchased ? purchased.likesToday : 0
+  }
 
-    // Check if the package is purchased
-    const isPurchased = (pkgId: string) => {
-        return purchasedPackages.some((p: any) => p.package._id === pkgId);
-    };
+  const modifiedSelectedMission = selectedMission.replace("VIP", "VIP")
+  const levelNumber = modifiedSelectedMission.match(/\d+/g)?.[0]
 
-    // Get the number of likes today for a purchased package
-    const getTodayLikes = (pkgId: string) => {
-        const purchased = purchasedPackages.find((p: any) => p.package._id === pkgId);
-        return purchased ? purchased.likesToday : 0;
-    };
+  // Function to handle scroll event
+  const handleScroll = () => {
+    const scrollPosition = window.scrollY
+    setIsSticky(scrollPosition > 0)
+  }
 
-    const modifiedSelectedMission = selectedMission.replace('VIP', 'VIP');
-    const levelNumber = modifiedSelectedMission.match(/\d+/g)?.[0];
+  // Add scroll event listener
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll)
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement
+      if (!target.closest(".vip-mission-dropdown")) {
+        setIsOpen(false)
+      }
+    }
 
+    if (isOpen) {
+      document.addEventListener("click", handleClickOutside)
+    }
 
-    const [isSticky, setIsSticky] = useState(false);
+    return () => {
+      document.removeEventListener("click", handleClickOutside)
+    }
+  }, [isOpen])
 
-    // Function to handle scroll event
-    const handleScroll = () => {
-        const scrollPosition = window.scrollY;
-        setIsSticky(scrollPosition > 0);
-    };
+  return (
+    <>
+      {/* {isOpen && <div className="fixed inset-0 bg-black/20 z-40" onClick={() => setIsOpen(false)} />} */}
 
-    // Add scroll event listener
-    useEffect(() => {
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, []);
-
-
-    return (
-        <>
-            <div className="w-full h-[40px]"></div>
+      <div className={`w-full max-w-[435px] px-4 flex items-center pt-1 pb-3  top-0 z-50 transition-all  `}>
+        <div className={cn("w-full flex items-center relative mt-2 vip-mission-dropdown")}>
+          <div className="w-full relative bg-[#1c1c1c] rounded-[8px]">
             <div
-                className={`w-full max-w-[435px] px-5   flex items-center pt-1 pb-3 fixed top-0 z-50 transition-all ${isSticky ? "bg-[#0f0f0f] shadow-md" : "bg-transparent"}`}
+              className="bg-[#1c1c1c] border border-[#393939] rounded-[8px] px-4 py-2.5 font-sans flex items-center justify-between text-[14px] font-medium text-white cursor-pointer w-full"
+              onClick={() => setIsOpen(!isOpen)}
+              style={{
+                background: "linear-gradient(rgba(250, 179, 54, 0), rgb(186 140 0 / 4%))",
+              }}
             >
-                <div className={cn("w-full flex items-center relative  mt-2")}>
-                    <div
-                        className="absolute left-0 top-0 cursor-pointer"
-                        onClick={() => {
-                            // router.push("/"+source);
-                            router.back();
-
-                        }}
-                    >
-                        <img
-                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4BAMAAABaqCYtAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAABJQTFRFAAAA////////////////////PlKtOgAAAAZ0Uk5TAEAQv//PMLGTOQAAAKFJREFUeJxjZMADGEclSZYUfI9bUlnxzQVckkxBH/7uxyWpKs+AUxKokYFnAw5JoEbG2w+wS4I08q3D4VpUjaiSaBpRJdE0okiia0SRRNeILImhEVkSQyOSJKZGJElWe3SNSJIiBugaiZVkdsRjLF4H4fUK/kDAG3z4Ax5vlOGPbLzJBH8Cw5s0wVpx5xV82QF/RgJqxW0s/syLDEYlCUkCAFLzQzmZtLZhAAAAAElFTkSuQmCC"
-                            className="w-[24px] h-[24px]   opacity-[.5]"
-                        />
-                    </div>
-
-                    <div className="ml-[30px] font-sora flex items-center text-[12px] font-medium text-white cursor-pointer "
-                        onClick={() => { setIsOpen(!isOpen) }}
-                    >
-                        <img src={`/vip-icons/vip${Number(levelNumber)}.png`} className="w-[20px] h-[20px] mr-1  " />
-                        <div className="mt-[4px]">
-                            {modifiedSelectedMission}
-                        </div>
-                        <ChevronDown
-                            size={16}
-                            className={cn(
-                                "mt-1 ml-[2px] transition-transform duration-200  transform  filter drop-shadow-lg",
-                                isOpen && "transform rotate-180"
-                            )}
-                        />
-                    </div>
+              <div className="flex items-center">
+                <div className="mt-[2px] font-sora text-[14px]">
+                  {modifiedSelectedMission}
+                  {/* (
+                  {getTodayLikes(allPackages.find((pkg) => selectedMission.startsWith(pkg.packageName))?._id || "")}/
+                  {allPackages.find((pkg) => selectedMission.startsWith(pkg.packageName))?.dailyViews || 0}) */}
                 </div>
-
-                <VipMissionAreaPopup
-                    isOpen={isOpen}
-                    onClose={() => { setIsOpen(false) }}
-                    t={t}
-
-                    purchasedPackages={purchasedPackages}
-                    allPackages={allPackages}
-                    onMissionChange={onMissionChange}
-                    selectedMission={selectedMission}
-                />
+              </div>
+              <ChevronDown
+                size={16}
+                className={cn(
+                  "ml-2 transition-transform duration-200 transform filter drop-shadow-lg",
+                  isOpen && "transform rotate-180",
+                )}
+              />
             </div>
-        </>
 
-    );
+            {isOpen && (
+              <div
+                className={cn(
+                  "absolute top-full left-0 mt-1 w-full bg-[#1c1c1c] border border-[#393939] rounded-[8px] z-50 max-h-[300px] overflow-y-auto",
+                  "shadow-2xl shadow-black/50 ring-1 ring-white/10",
+                )}
+              >
+                {allPackages.map((pkg, index) => {
+                  const purchased = isPurchased(pkg._id)
+                  const likesToday = purchased ? getTodayLikes(pkg._id) : 0
+                  const displayText = `${pkg.packageName} ${t("reels.missionAreaLabel")} (${likesToday}/${pkg.dailyViews})`
+
+                  return (
+                    <div
+                      key={index}
+                      className={cn(
+                        "px-4 py-2.5 text-[14px] text-white cursor-pointer font-sans flex items-center hover:bg-[#2a2a2a] transition-colors",
+                        selectedMission.startsWith(pkg.packageName) && "bg-[#2a2a2a]",
+                      )}
+                      onClick={() => {
+                        if (selectedMission.startsWith(pkg.packageName)) {
+                          setIsOpen(false)
+                        } else {
+                          onMissionChange(pkg.packageName, pkg._id)
+                          setIsOpen(false)
+                        }
+                      }}
+                    >
+                      <div className="ml-0 font-sora">{displayText}</div>
+                    </div>
+                  )
+                })}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </>
+  )
 }

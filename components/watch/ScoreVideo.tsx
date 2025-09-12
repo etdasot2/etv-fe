@@ -12,6 +12,7 @@ import VideoPlayer from './VideoPlayer';
 import MoreVideos from './MoreVideos';
 import AnimationPage from '../AnimationPage';
 import { useLoading } from '@/context/LoadingContext';
+import MoreVideoScore from './MoreVideoScore';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
@@ -67,14 +68,14 @@ interface ReelsMetadata {
     timestamp: string;
 }
 
-interface WatchVideoProps {
+interface ScoreVideoProps {
     isExplore?: boolean; 
 }
 
 
-export default function WatchVideo({
+export default function ScoreVideo({
     isExplore
-}:WatchVideoProps): JSX.Element {
+}:ScoreVideoProps): JSX.Element {
     const { t } = useTranslation();
 
     const [videos, setVideos] = useState<Reel[]>([]);
@@ -315,7 +316,7 @@ export default function WatchVideo({
         onMissionChange={handleMissionChange}
         selectedMission={`${packageDataRef.current.selectedPackage?.package?.packageName || 'VIP0'} ${t('reels.missionAreaLabel')} (${packageDataRef.current.likesToday}/${packageDataRef.current.dailyLimit})`}
       /> */}
-            <VipMissionArea
+            {/* <VipMissionArea
                 title={`${packageData.selectedPackage?.package?.packageName || 'VIP0'} ${t('reels.missionAreaLabel')} (${packageData.likesToday}/${packageData.dailyLimit})`}
                 earnedMoney={packageData.earnedMoney}
                 allPackages={packageData.allPackages}
@@ -323,7 +324,7 @@ export default function WatchVideo({
                 onMissionChange={handleMissionChange}
                 selectedMission={`${packageData.selectedPackage?.package?.packageName || 'VIP0'} ${t('reels.missionAreaLabel')} (${packageData.likesToday}/${packageData.dailyLimit})`}
                 source={source}
-            />
+            /> */}
             {/* <AnimationPage direction='top'> */}
 
             {!isExplore &&
@@ -334,7 +335,7 @@ export default function WatchVideo({
                 subscribed={subscribed}
             /> }
 
-            <MoreVideos 
+            <MoreVideoScore
                 source={source}
                 p={packageId}
                 showSearch={isExplore}

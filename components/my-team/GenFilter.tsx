@@ -6,9 +6,11 @@ interface GenFilterProps {
 }
 
 const generations = [
-  { name: 'First Gen', value: 1 },
-  { name: 'Second Gen', value: 2 },
-  { name: 'Third Gen', value: 3 }
+  { name: 'Lv.1', value: 1 },
+  { name: 'Lv.2', value: 2 },
+  { name: 'Lv.3', value: 3 },
+  { name: 'Lv.4', value: 4 },
+  { name: 'Lv.5', value: 5 },
 ];
 
 export default function GenFilter({ selectedGen, onSelectGen }: GenFilterProps) {
@@ -21,7 +23,7 @@ export default function GenFilter({ selectedGen, onSelectGen }: GenFilterProps) 
             className="w-[50%] flex items-center justify-center font-sora text-[14px] cursor-pointer"
             onClick={() => onSelectGen(gen.value)}
             style={selectedGen === gen.value ? {
-              background: 'linear-gradient(-40deg, #f40208, #ff464b)',
+              background: 'linear-gradient(to right, #b37106, #c18610, #7c4804)',
               borderRadius: '50px'
             } : {}}
           >

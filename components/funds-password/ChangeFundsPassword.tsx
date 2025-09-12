@@ -132,7 +132,11 @@ const ChangeFundsPassword: React.FC = () => {
         newFundsPassword: data.newFundsPassword,
         isBind: isBind ? true : false
       });
-      setInfoText(t('profile.fundsPassword.changedSuccess'));
+      if(isBind){
+        setInfoText(t('profile.fundsPassword.changedSuccessBind'));
+      }else{
+        setInfoText(t('profile.fundsPassword.changedSuccess'));
+      }
       router.back();
     } catch (error: any) {
       if (error === 'code_invalid_or_expired') {

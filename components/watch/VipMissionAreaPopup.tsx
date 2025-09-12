@@ -53,7 +53,7 @@ const VipMissionAreaPopup: React.FC<VipMissionAreaPopupProps> = ({ isOpen, onClo
                 >
                     <motion.div
                         className="w-full bg-[#1c1c1c] rounded-t-[13px] max-w-[435px]"
-                        initial={{ y: "100%" }}
+                        initial={{ y: "100%" }} 
                         animate={{ y: 0 }}
                         exit={{ y: "100%" }}
                         transition={{

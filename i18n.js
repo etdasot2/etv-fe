@@ -243,6 +243,9 @@ const resources = {
             },
             "revenue": {
                 "title": "Member Center",
+                "score": {
+                    "title": "Scoring Center",
+                },
                 "specialPackage": "Special Packages",
                 "currentlevel": "Current level",
                 "todayEarning": "Today Earning",
@@ -410,6 +413,7 @@ const resources = {
                     "title": "Funding Password",
                     "codeSent": "Verification code sent successfully",
                     "changedSuccess": "Funds password changed successfully",
+                    "changedSuccessBind": "Funds password bound successfully",
                     "inputs": {
                         "email": {
                             "label": "Email address",
@@ -826,7 +830,7 @@ const resources = {
                 "errors": {
                     "selectValidPackage": "Please select VIP mission",
                     "dailyLimitReached": "Limit reached",
-                    "notPurchased": "Invalid package",
+                    "notPurchased": "No package found",
                     "packageExpired": "Package expired",
                     "alreadyLiked": "Already subscribed"
                 },

@@ -191,19 +191,7 @@ export default function TeamGenerations() {
                     </div>
                 </div>
 
-                <Link href="/promote/team">
-        <button
-          type="submit"
-          className="w-[100%] text-white py-2 bg-gradient-to-r from-[#b37106] via-[#c18610] to-[#7c4804] rounded-full font-sora text-[16px] font-medium hover:bg-transparent transition-colors h-[44px] mt-1"
-          style={{
-            // background:'linear-gradient(180deg, #fd717100, rgb(253 113 113 / 10%))',
-            // background: 'linear-gradient(-40deg, #f40208, #ff464b)',
-
-          }}
-        >
-          {t('team.teamMemberListBtn')}
-        </button>
-        </Link>
+                
             </div>
             {/* {isLoading && <DefaultLoading />} */}
         </>

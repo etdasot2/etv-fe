@@ -128,14 +128,12 @@ export default function ProfileDetails() {
   </Link>
 
 </div>
-
-{!isLoading &&
-<>
+ 
 {/* Balance Information */}
-<div className=" rounded-lg p-4 mb-4 w-full mt-6 relative"
+<div className=" rounded-lg p-4 mb-4 w-full mt-6 relative "
 >
  
-  <div className="flex justify-between w-full relative z-10">
+  <div className="flex justify-between w-full relative z-10 mt-2">
     <Link href="/user/wallet" className="text-center w-[33.333%]">
       <p className="text-[18px] font-semibold text-[#936616] font-sora  flex items-center justify-center">
         {profileData?.balance?.withdrawal && Number(profileData?.balance?.withdrawal).toFixed(1) || '0.0'}
@@ -169,8 +167,7 @@ export default function ProfileDetails() {
   }}
   ></div>
 </div> 
-
-</>}
+ 
 </div>
   );
 }

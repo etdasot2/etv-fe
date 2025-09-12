@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { Suspense } from 'react'
 import BackTitle from '@/components/RouteBack'
 import ChangeFundsPassword from '@/components/funds-password/ChangeFundsPassword'
 import { useTranslation } from 'react-i18next'
@@ -16,7 +16,9 @@ const FundingPasswordPage: React.FC = () => {
         back={true}
       />
 
-      <ChangeFundsPassword />
+      <Suspense>
+        <ChangeFundsPassword />
+      </Suspense>
     </div>
   )
 }

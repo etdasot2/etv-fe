@@ -46,7 +46,7 @@ const UserPackageCard: React.FC<UserPackageCardProps> = ({ pkg, purchasePackage 
 
             {/* Show expired message if the package has expired */}
             {purchasePackage.isExpired ? (
-                <button 
+                <button
                     className="w-[100%] border border-[#805c33] text-white py-2 rounded-full font-sora text-[14px] font-semibold hover:bg-transparent transition-colors"
                     style={{
                         background: 'linear-gradient(180deg, #fd717100, rgb(253 113 113 / 10%))',
@@ -57,13 +57,11 @@ const UserPackageCard: React.FC<UserPackageCardProps> = ({ pkg, purchasePackage 
             ) : (
                 <button
                     onClick={() => {
-                        router.push(`/reels?pkg-sn=${pkg._id}`);
+                        router.push(`/revenue/scoring?p=${pkg._id}`);
                     }}
                     className="w-[100%] border border-[#805c33] text-white py-2 rounded-full font-sora text-[14px] font-semibold hover:bg-transparent transition-colors"
                     style={{
-              background: 'linear-gradient(rgb(250 179 54 / 0%), rgb(186 140 0 / 10%))',
-
-
+                        background: 'linear-gradient(rgb(250 179 54 / 0%), rgb(186 140 0 / 10%))',
                     }}
                 >
                     {t('revenue.package.scoreBtn')} ({purchasePackage.likesToday}/{pkg.dailyViews})
