@@ -11,7 +11,7 @@ interface VipMissionAreaProps {
   earnedMoney: number
   purchasedPackages: any[] // Purchased packages
   allPackages: any[] // All packages (including non-purchased)
-  onMissionChange: (missionName: string, pkgId: string) => void // Callback to change mission
+  onMissionChange: (pkgId: string) => void // Callback to change mission by package ID
   selectedMission: string // Selected mission/package
   source: string
 }
@@ -135,7 +135,7 @@ export default function VipMissionArea({
                         if (selectedMission.startsWith(pkg.packageName)) {
                           setIsOpen(false)
                         } else {
-                          onMissionChange(pkg.packageName, pkg._id)
+                          onMissionChange(pkg._id)
                           setIsOpen(false)
                         }
                       }}

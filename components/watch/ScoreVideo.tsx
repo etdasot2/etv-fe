@@ -13,6 +13,7 @@ import MoreVideos from './MoreVideos';
 import AnimationPage from '../AnimationPage';
 import { useLoading } from '@/context/LoadingContext';
 import MoreVideoScore from './MoreVideoScore';
+import { usePageResume } from '@/utils/usePageResume';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
@@ -137,15 +138,22 @@ export default function ScoreVideo({
     }
 
 
-    const initializePackages = useCallback(async (): Promise<void> => {
-        if (initialLoadDoneRef.current) return;
+    const debugSessionId = useRef(Math.random().toString(36).substr(2, 9));
+
+    const refetchPackages = useCallback(async (isInitialLoad = false): Promise<void> => {
+        const sessionId = debugSessionId.current;
+        console.log(`[${sessionId}] ${isInitialLoad ? 'Initial' : 'Refetch'} packages starting`, new Date().toISOString());
+        
         setIsLoading(true);
         try {
             const { allPackages, userPackagesWithLikes, instagramLinked } = await fetchPackagesAndLikes();
+            console.log(`[${sessionId}] Fetched packages - userPackages:`, userPackagesWithLikes.length, 'likesToday values:', userPackagesWithLikes.map((p: UserPackage) => `${p.package.packageName}:${p.likesToday}`));
 
             const selectedUserPackage = packageId ?
                 userPackagesWithLikes.find((pkg: UserPackage) => pkg.package._id === packageId) :
                 null;
+
+            console.log(`[${sessionId}] Selected package:`, selectedUserPackage?.package?.packageName, 'likesToday:', selectedUserPackage?.likesToday, 'dailyLimit:', selectedUserPackage?.package?.dailyViews);
 
             setPackageData({
                 allPackages,
@@ -157,20 +165,33 @@ export default function ScoreVideo({
                 instagramLinked
             });
 
-            initialLoadDoneRef.current = true;
-            console.log('hiii')
+            if (isInitialLoad) {
+                initialLoadDoneRef.current = true;
+            }
+            console.log(`[${sessionId}] Package data updated successfully`);
         } catch (error) {
-            console.error('Failed to initialize packages:', error);
+            console.error(`[${sessionId}] Failed to ${isInitialLoad ? 'initialize' : 'refetch'} packages:`, error);
         } finally {
             setIsLoading(false);
         }
     }, [packageId]);
+
+    const initializePackages = useCallback(async (): Promise<void> => {
+        if (initialLoadDoneRef.current) return;
+        await refetchPackages(true);
+    }, [refetchPackages]);
 
 
 
     useEffect(() => {
         initializePackages();
     }, [initializePackages]);
+
+    // Handle page resume events (bfcache, visibility changes)
+    usePageResume(() => {
+        console.log(`[${debugSessionId.current}] Page resume detected, triggering refetch`);
+        refetchPackages(false);
+    }, [packageId]);
 
 
 
@@ -274,7 +295,7 @@ export default function ScoreVideo({
 
     const handleMissionChange = useCallback((pkgId: string): void => {
         const selectedUserPackage = packageDataRef.current.userPackagesWithLikes.find(
-            (pkg: UserPackage) => pkg.package.packageName === pkgId
+            (pkg: UserPackage) => pkg.package._id === pkgId
         );
 
         if (!selectedUserPackage) {

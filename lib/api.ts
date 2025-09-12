@@ -659,8 +659,12 @@ export const fetchPackagesAndLikes = async () => {
     const token = getToken(); // Assuming getToken is a function that retrieves the JWT token
     if (!token) throw new Error('No token found');
 
+    // Add timestamp cache-buster to ensure fresh data
+    const cacheBuster = Date.now();
+    
     const response = await apiClient.get('/global/get-packages-and-likes', {
-        headers: { Authorization: `Bearer ${token}`, 'Cache-Control': 'no-store' }
+        headers: { Authorization: `Bearer ${token}`, 'Cache-Control': 'no-store' },
+        params: { _t: cacheBuster }
     });
 
     return response.data;
