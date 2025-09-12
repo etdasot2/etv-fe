@@ -48,36 +48,50 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, onSubscribe, isSubsc
         <>
             {!loading &&
 
-                <div className="mt-2">
+                <div className="mt-2 ">
+                    <div className="relative">
+
                     <MuxPlayer
                         playbackId={video.muxPlaybackId}
                         streamType="on-demand"
                         muted={false}
+                        poster={video.youtube.thumbnail}
                         //   onPlay={() => setIsPlaying(true)}
                         //   onPause={() => setIsPlaying(false)}
                         //   onTimeUpdate={handleTimeUpdate}
                         // onWaiting={() => setIsBuffering(true)}
                         // onPlaying={() => setIsBuffering(false)}
                         style={{
-                            height: '270px',
+                            height: '320px',
                             width: '100%',
                             // '--controls': 'none',
-                            '--media-object-fit': 'contain',
+                            '--media-object-fit': 'cover',
+                            '--media-object-position': 'bottom',
+                            
                         } as React.CSSProperties}
-                    />
+
+                    /> 
+                    
+                    {/* <img src={video.youtube.thumbnail} className="absolute inset-0 h-full w-full " /> */}
+ </div>
 
                     <div className="mt-3 p-5 pt-0">
                         {/* title and views */}
-                        <div className="flex items-center justify-between">
+                        <h1 className="font-sora text-white font-semibold text-[20px] leading-[1.3]">{video.headline}</h1>
+
+
+{/* <div className="text-[12px] font-sora text-[#AAAAAA] mt-2 ">{formatBigNumbers(video.views)} {t('watch.views')} {getTimeAgo(video.published)}</div> */}
+
+
+                        <div className="flex items-start justify-between mt-[20px]">
                             <div className="flex flex-col">
+                            <p className="font-sora text-white/70  text-[12px] mt-1 ">Type: {video.category}</p>
+                            <p className="font-sora text-white/70  text-[12px] mt-1 ">Director: {video.director}</p>
 
-                                <h1 className="font-sora text-white font-bold text-[16px] leading-[1.3]">{video.headline}</h1>
-
-                                <div className="text-[12px] font-sora text-[#AAAAAA] mt-2 ">{formatBigNumbers(video.views)} {t('watch.views')} {getTimeAgo(video.published)}</div>
-                            </div>
+                               </div>
 
                             {/* subscribe section */}
-                            <div className="flex items-center w-[45px] h-[45px]">
+                            <div className="flex items-center w-[45px] h-[45px] flex-shrink-0">
                                 <div className=" w-full mt-4 bg-[#272727] rounded-full p-3 flex items-center justify-center">
 
                                     {video.isLiked || subscribed === video._id ? <>
@@ -92,6 +106,13 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, onSubscribe, isSubsc
                                         </button>}
                                 </div>
                             </div>
+
+                            
+
+                        </div>
+                        <div className="mt-5">
+                            <span className="font-sora text-white font-semibold  text-[14px] ">Introduction:</span>
+                        <p className="font-sora text-white/70  text-[12px] mt-1 ">{video.description}</p>
 
                         </div>
 

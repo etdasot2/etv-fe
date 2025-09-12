@@ -211,9 +211,9 @@ const MoreVideoScore: React.FC<MoreVideoScoreProps> = ({ source, p, showSearch, 
       </div> */}
 
       <div className="p-4">
-        {/* <h2 className="text-[16px] text-white font-sora font-bold mb-3 flex items-center justify-between">
-          <div className="flex items-center">{t("watch.explore")}</div>
-        </h2> */}
+        <h2 className="text-[16px] text-white font-sora font-semibold mb-3 flex items-center justify-between">
+          <div className="flex items-center">Related Recommendations</div>
+        </h2>
 
         {noResults ? (
           <div className="text-center py-10 text-gray-400 font-sora">No results found for "{searchQuery}"</div>
@@ -242,7 +242,7 @@ const MoreVideoScore: React.FC<MoreVideoScoreProps> = ({ source, p, showSearch, 
 
                   <div className="flex w-full mt-3">
                     <div className="flex flex-col ml-0 flex-1">
-                      <h1 className="font-sora text-[14px] leading-[1.1] font-semibold line-clamp-2">
+                      <h1 className="font-sora text-[14px] leading-[1.1] font-semibold line-clamp-1">
                         {video.headline}
                       </h1>
                     </div>
