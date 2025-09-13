@@ -590,6 +590,18 @@ export const fetchPackagesAndPurchased = async () => {
     return response.data; // The response will contain both 'allPackages' and 'purchasedPackages'
 };
 
+export const fetchPackagesAndPurchasedRating = async () => {
+    const token = getToken();
+    if (!token) throw new Error('No token found');
+
+    const response = await apiClient.get('/global/packages-rating', {
+        headers: { Authorization: `Bearer ${token}` },
+    });
+
+    return response.data; // The response will contain both 'allPackages' and 'purchasedPackages'
+};
+
+
 export const fetchRandomReels = async (limit: number = 6, excludeIds: string[] = []) => {
     const token = getToken();
     if (!token) throw new Error('No token found');

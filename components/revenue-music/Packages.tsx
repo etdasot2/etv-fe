@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect, useCallback } from 'react'; 
-import { fetchPackagesAndPurchased } from '@/lib/api'; // Import the new API function
+import { fetchPackagesAndPurchasedRating } from '@/lib/api'; // Import the new API function
 import PackageCard from './PackageCard';
 import UserPackageCard from './UserPackageCard'; // Import the UserPackageCard component
 import DefaultLoading from '../loaders/DefaultLoading';
@@ -22,7 +22,7 @@ export default function Packages() {
         setIsLoading(true)
         setGlobalLoading(true)
         try {
-          const { allPackages, purchasedPackages } = await fetchPackagesAndPurchased()
+          const { allPackages, purchasedPackages } = await fetchPackagesAndPurchasedRating()
           setPackages(allPackages)
           setPurchasedPackages(purchasedPackages)
         } catch (err) {

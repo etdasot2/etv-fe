@@ -245,7 +245,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, onSubscribe, isSubsc
                         >
                             {/* Progress Bar */}
                             <div 
-                                className="w-full h-1 bg-[#4d4d4d5c] rounded-full cursor-pointer relative mb-1 shadow-lg"
+                                className="w-full h-1 bg-[#c8c8c845] rounded-full cursor-pointer relative mb-1 shadow-lg"
                                 onClick={handleProgressClick}
                             >
                                 <div 

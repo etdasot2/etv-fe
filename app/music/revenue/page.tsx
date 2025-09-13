@@ -17,7 +17,7 @@ const MemberCenter = () => {
     >
       <img src="/assets/main-bg.png" className=" max-w-[435px] fixed top-0 left-1/1 w-full h-[400px]  opacity-[.7] "/>
 
-      <BackTitle
+      <BackTitle 
         title={t('revenueMusic.title')}
 
       />
