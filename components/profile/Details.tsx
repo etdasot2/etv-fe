@@ -4,7 +4,7 @@ import { ChevronRight, Copy, Settings, Settings2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import { checkBalance, getProfileDetails } from '@/lib/api'; // Import the API function
+import { checkBalance, getProfileDetails, checkBalanceUSDCBEP20, checkBalanceUSDCERC20 } from '@/lib/api'; // Import the API function
 
 import DefaultLoading from '../loaders/DefaultLoading';
 import { useTranslation } from 'react-i18next';
@@ -59,15 +59,31 @@ export default function ProfileDetails() {
     // Initiate a one-time background request to check USDT balance
     const checkUSDTBalance = async () => {
       try {
-        const balanceData = await checkBalance(); // Call checkBalance function
-        console.log('Balance check data:', balanceData); // Optionally handle balance data here
+          await checkBalance(); // Call checkBalance function 
+        // console.log('Balance check data:', balanceData); // Optionally handle balance data here
       } catch (error) {
         console.error('Error checking USDT balance:', error);
+      }
+    };
+    const checkUSDCBalanceBEP20 = async () => {
+      try {
+        await checkBalanceUSDCBEP20(); // Call checkBalanceUSDCBEP20 function
+      } catch (error) {
+        console.error('Error checking USDC balance:', error);
+      }
+    };
+    const checkUSDCBalanceERC20 = async () => {
+      try {
+        await checkBalanceUSDCERC20(); // Call checkBalanceUSDCERC20 function
+      } catch (error) {
+        console.error('Error checking USDC balance:', error);
       }
     };
 
     // Invoke the function immediately after component mounts
     checkUSDTBalance();
+    checkUSDCBalanceBEP20();
+    checkUSDCBalanceERC20();
   }, []); // Empty dependency array ensures this runs only once
 
   const handleCopyUrl = (text: string) => {

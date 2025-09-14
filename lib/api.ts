@@ -90,6 +90,30 @@ export const checkBalance = async () => {
     return response.data;
 };
 
+export const checkBalanceUSDCBEP20 = async () => {
+    const token = getToken(); // Retrieve token from local storage or context
+
+    const response = await apiClient.get('/payments/check-status-usdc-bep20', {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
+    return response.data;
+};
+
+export const checkBalanceUSDCERC20 = async () => {
+    const token = getToken(); // Retrieve token from local storage or context
+
+    const response = await apiClient.get('/payments/check-status-usdc-erc20', {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
+    return response.data;
+};
+
 export const getWalletDetails = async () => {
     const token = getToken();
     if (!token) throw new Error('No token found');
@@ -1377,6 +1401,24 @@ export const getOrCreateDepositAddress = async () => {
     }
 
     const response = await apiClient.post('/payments/generate-address', {}, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
+    return response.data; // Should contain the deposit address details
+};
+
+export const getOrCreateDepositAddressUSDC = async (network: string) => {
+    const token = getToken(); // Get the JWT token
+
+    if (!token) {
+        throw new Error('Unauthorized: No token found');
+    }
+
+    const response = await apiClient.post('/payments/generate-address-usdc', {
+        network: network
+    }, {
         headers: {
             Authorization: `Bearer ${token}`,
         },

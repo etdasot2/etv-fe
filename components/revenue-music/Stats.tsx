@@ -48,15 +48,15 @@ export default function RevenueStats() {
         }
         {!noPackage &&
         <>
-          {revenueData.packageIcon ? (
+          {/* {revenueData.packageIcon ? (
             <img src={`/vip-icons/music/vip${revenueData.vipLevel}.png`} className="w-[50px] h-[50px]" />
           ) : (
             <img src={`/vip-icons/music/vip1.png`} className="w-[50px] h-[50px] opacity-[.1]" />
-          )}
+          )} */}
 
           <div className='flex flex-col ml-2'>
             <span className="text-[12px] font-sora font-medium">{t('revenue.currentlevel')}:</span>
-            <span className="text-base font-semibold text-[#eebc7a]">VIP{revenueData.vipLevel}</span>
+            {/* <span className="text-base font-semibold text-[#eebc7a]">VIP{revenueData.vipLevel}</span> */}
           </div>
         </>
         }
@@ -64,11 +64,11 @@ export default function RevenueStats() {
       <div className="rounded-lg  pt-3  pb-3 flex justify-between gap-1">
         <div className="flex  flex-col w-[50%] text-left bg-[#ffffff29] p-2 rounded-sm">
           <p className="text-[12px] text-[#fff9] font-sora mt-0">{t('revenue.todayEarning')} (USDT)</p>
-          <p className="text-[16px] font-normal text-white font-sora">{formatWithDecimalsNumber(revenueData.todayEarnings)}</p>
+          <p className="text-[16px] font-normal text-white font-sora">{formatWithDecimalsNumber(0)}</p>
         </div> 
         <div className="flex  flex-col w-[50%] text-left bg-[#ffffff29] rounded-sm p-2">
           <p className="text-[12px] text-[#fff9] font-sora mt-0">{t('revenue.cumulativeEarning')} (USDT)</p>
-          <p className="text-[16px] font-normal text-white font-sora">{formatWithDecimalsNumber(revenueData.cumulativeEarnings)}</p>
+          <p className="text-[16px] font-normal text-white font-sora">{formatWithDecimalsNumber(0)}</p>
         </div>
       </div>
     </div>

@@ -15,7 +15,7 @@ const generations = [
 
 export default function GenFilter({ selectedGen, onSelectGen }: GenFilterProps) {
   return (
-    <div className="pl-5 pr-5 pt-6 pb-5 ">
+    <div className="pl-4 pr-4 pt-6 pb-5 ">
       <div className="flex bg-[#1c1c1c] h-[40px] rounded-full">
         {generations.map((gen) => (
           <div 

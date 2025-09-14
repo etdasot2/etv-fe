@@ -88,7 +88,7 @@ export default function MyTeamList() {
     return (
         <>
             <GenFilter selectedGen={selectedGen} onSelectGen={setSelectedGen} />
-            <div className="pl-5 pr-5 pt-0">
+            <div className="pl-4 pr-4 pt-0">
                 {members.length > 0 ? (
                     members.map((member) => (
                         <>

@@ -548,6 +548,7 @@ const resources = {
             "recharge": {
                 "title": "Asset Deposit",
                 "selectCurrency": "Select Currency",
+                "selectNetwork": "Select Network",
                 "mainnet": "Mainnet",
                 "saveQRcode": "Save QR code",
                 "depositAddress": "Deposit Address",
