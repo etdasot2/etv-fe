@@ -4,6 +4,7 @@ import BackTitle from '@/components/RouteBack'
 import TaskTable from '@/components/task/TaskTable'
 import { useTranslation } from 'react-i18next'
 import MissionCenterMain from "@/components/missionsCenter/MissionCenter"
+import AnimationPage from '@/components/AnimationPage'
 
 const TaskPage: React.FC = () => {
   const { t } = useTranslation();
@@ -19,7 +20,12 @@ const TaskPage: React.FC = () => {
 
       <div className="mt-4  ">
         {/* <TaskTable /> */}
+
+      <AnimationPage
+        direction='top'
+      >
         <MissionCenterMain />
+      </AnimationPage>
       </div>
     </div>
   )

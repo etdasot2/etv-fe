@@ -45,7 +45,7 @@ export default function NoticeDetails() {
   }, [tutorialId]);
 
   return (
-    <div className="p-4 pt-3 pl-5 pr-5 pb-10">
+    <div className="p-4 pt-3 pl-4 pr-4 pb-10">
       {isLoading ? (
        <></> // Optional: Loading component
       ) : tutorial ? (

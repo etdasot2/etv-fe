@@ -42,7 +42,7 @@ export default function ListNotices() {
 
   return (
     <>
-      <div className="p-4 pt-3 pl-5 pr-5 mt-0 space-y-2">
+      <div className="p-4 pt-3 pl-4 pr-4 mt-0 space-y-2">
 
         {tutorials.map((tutorial) => (
           <div key={tutorial._id} className="mt-[0px] "

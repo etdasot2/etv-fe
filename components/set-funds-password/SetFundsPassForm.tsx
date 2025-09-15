@@ -108,7 +108,7 @@ export default function SetFundsPassForm() {
 
       <div className="w-full fixed bottom-0 left-0 right-0  flex justify-center">
           <div className="w-full max-w-[435px]  ">
-            <div className="   pl-5 pr-5 pb-7 pt-3 bg-[#1c1c1c]">
+            <div className="   pl-4 pr-4 pb-7 pt-3 bg-[#1c1c1c]">
               {/* <div className="w-full h-full bg-[#000000c7] blur-md absolute left-0 top-[2px]">
 
           </div> */}

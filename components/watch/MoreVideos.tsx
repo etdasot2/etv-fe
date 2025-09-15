@@ -191,11 +191,11 @@ const MoreVideos: React.FC<MoreVideosProps> = ({ source, p, showSearch, videoId 
   return (
     <>
       {/* {showSearch && (
-        <div className="pl-5 pr-5">
+        <div className="pl-4 pr-4">
           <div className="w-full rounded-full mt-5 bg-[#1c1c1c] border-[1.5px] border-[#252525] h-[43px] relative">
             <input
               placeholder="Search"
-              className="bg-transparent w-full h-full outline-none border-none pl-5 pr-5 font-sora text-[14px]"
+              className="bg-transparent w-full h-full outline-none border-none pl-4 pr-4 font-sora text-[14px]"
               value={searchQuery}
               onChange={handleSearchChange}
             />

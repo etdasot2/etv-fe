@@ -56,7 +56,7 @@ export default function TrendingNow({ pageNumber }: TrendingNowProps) {
                             <div className="relative">
                     <img
                       src={video?.youtube?.thumbnail || "/placeholder.svg"}
-                      className="w-full h-full object-contain rounded-[10px]"
+                      className="w-full h-[280px] object-cover rounded-[10px]"
                       alt={video.headline}
                     />
                     {/* <div className="absolute bottom-[10px] right-[10px] rounded-sm bg-[#00000099] text-[13px] font-medium pl-1 pr-1">

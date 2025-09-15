@@ -11,7 +11,7 @@ const HelpCenterPage: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="bg-[#0f0f0f] min-h-screen text-white"
+    <div className="bg-[#151515] min-h-screen text-white"
     >
 
       <BackTitle

@@ -37,11 +37,11 @@ export default function TutorialDetails() {
   }, [tutorialId]);
 
   return (
-    <div className="p-4  pl-5 pr-5 pb-10">
+    <div className="p-4  pl-4 pr-4 pb-10">
       {isLoading ? (
         <DefaultLoading /> // Optional: Loading component
       ) : tutorial ? (
-        <div className="w-full bg-[#1f1f1f] p-4 flex items-start justify-between rounded-[11px] flex-col">
+        <div className="w-full bg-[#1c1c1c] p-4 flex items-start justify-between rounded-[11px] flex-col">
         <span className="font-sora text-white text-[14px] font-medium">{t(tutorial.title)}</span>
         <div className="flex pt-4">
           <p className="font-sora text-[14px] font-normal text-white/90">

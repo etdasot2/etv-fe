@@ -37,15 +37,15 @@ export default function ListTutorials() {
 
   return (
     <>
-      <div className="p-4 pl-5 pr-5 mt-0 space-y-2">
+      <div className="p-4 pl-4 pr-4 mt-0 space-y-4">
       
           {tutorials.map((tutorial) => (
             <div key={tutorial._id} className="mt-[0px] "
                 onClick={()=>{
-                    router.push(`/tutorials/details?id=${tutorial._id}`);
+                    router.push(`/help/details?id=${tutorial._id}`);
                 }}
             >
-              <div className="w-full bg-[#1f1f1f] p-4 flex items-center justify-between rounded-[11px]">
+              <div className="w-full bg-[#1c1c1c] p-3.5 pl-5 pr-4 flex items-center justify-between rounded-[12px]">
                 <span className="font-sora text-white text-[14px] font-medium">{t(tutorial.title)}</span>
                 <div className="flex pl-[20px]">
                 <ChevronRight size={20} className="text-white opacity-[.5]" />

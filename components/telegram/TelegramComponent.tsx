@@ -116,7 +116,7 @@ export default function TelegramComponent() {
   }, [router, setValue]);
 
   return (
-    <div className="pl-5 pr-5">
+    <div className="pl-4 pr-4">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="font-sora text-[14px]">
             {rewardStatus?.status === "pendingReview" && <div className="mb-3">{t('telegram.rewardStatuses.pendingReviewGr')}</div>}

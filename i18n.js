@@ -70,7 +70,7 @@ const resources = {
                 "missionCenter": "mission center",
                 "bonusDescription": "Bonus description",
                 "socialMedia": "Social Media",
-                "joinUs": "Join us on social media to stay up-to-date with the latest content",
+                "joinUs": "Join the official Eternova Films Telegram group and receive 1 USDT as a reward.",
                 "leader": "Eternova Films City Partner",
                 "home": "Home",
                 "forYou": "For You",
@@ -87,25 +87,25 @@ const resources = {
             "notices": {
                 "title": "Notices",
                 "translation": {
-                    "Eternova Films_open": {
+                    "eternovafilms_open": {
                         "title": "Welcome to Eternova Films",
-                        "content": "Tired of scrolling endlessly without reward? Imagine a world where your YouTube time actually pays you. It's here. Introducing a revolutionary platform that transforms your viewing habits into a source of passive income. For too long, we've given our attention away for free. We've spent countless hours absorbing content, laughing, learning, and being entertained, but what have we truly gained? Now, that's about to change. We've partnered with the world's leading film producers, bringing you blockbuster movies and exclusive behind-the-scenes content. We've also curated the best of YouTube, showcasing the most innovative and engaging content creators on the planet. This isn't just mindless scrolling; it's a curated experience designed to entertain, educate, and, most importantly, reward you. Here's how it works: Simply watch the content you love, and get paid for your time. No complicated surveys, no hidden fees, just pure, passive income. It's a simple, yet powerful concept: your attention has value, and we're here to make sure you get compensated for it. Think of it as an investment in yourself. You're not just spending time; you're investing it in your future. You're turning your downtime into income, your entertainment into earnings. It's a paradigm shift, a new way to interact with the digital world. This is more than just a platform; it's a community of viewers who understand the value of their time. It's a place where you can discover new content, connect with like-minded individuals, and build a passive income stream that grows with you. Don't just spend your time on YouTube. Invest it. Discover the potential of a new way to earn. Join us and experience the future of entertainment and passive income. Your viewing time is valuable, and we're here to make sure it pays off. Unlock the potential today. Start earning while you watch."
+                        "content": "We're excited to have you join our community. Eternova Films is more than just a platform—it's a stage where cinema, music, and creativity shine together. Here you'll discover powerful stories, unforgettable performances, and opportunities to grow alongside a global audience of dreamers and creators. Whether you're here to enjoy films, explore music, or take part in new ventures, your journey starts now. Thank you for stepping into this world with us—together we're building something timeless. Join the official Telegram group and claim your 1 USDT reward today!"
                     },
                 }
             },
             "help": {
-                "title": "Tutorials",
+                "title": "Help Center",
                 "translation": {
                     "how_to_recharge": {
                         "title": "How to Recharge",
                         "content": "Tap 'Mine' on the bottom bar, then tap 'Recharge & Withdraw'. Tap the 'Recharge' button, select the recharge currency and mainnet, then copy the deposit address."
                     },
-                    "how_to_do_task_long": {
-                        "title": "How to Do a Task (Long Video Section)",
+                    "how_to_do_task_movie": {
+                        "title": "How to Do a Movie Task",
                         "content": "Tap 'VIP' on the bottom bar, find your package, tap 'Score' to receive income, select a video, then tap 'Subscribe'."
                     },
-                    "how_to_do_task_shorts": {
-                        "title": "How to Do a Task (Shorts Section)",
+                    "how_to_do_task_music": {
+                        "title": "How to Do a Music Task ",
                         "content": "Tap 'Shorts' on the bottom bar, find your package, tap 'Score' to receive income, scroll down to view a video, then tap 'Subscribe'."
                     },
                     "how_to_withdraw": {

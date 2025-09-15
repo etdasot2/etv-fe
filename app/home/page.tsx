@@ -19,9 +19,10 @@ import AnimationPage from '@/components/AnimationPage'
 
 
 const images = [
-  '/assets/bs1.png',
+  // '/assets/bs1.png',
   '/assets/bs3.png',
-
+  '/assets/bs449.png',
+  
   '/assets/bs5.png',
 
   '/assets/bs4.png',
@@ -35,10 +36,10 @@ export default function HomePage() {
   const { t } = useTranslation();
 
   const quickLinks = [
-    { id: 1, title: t('home.aboutUs'), icon: FileText, img: "/assets/ic10..1a.png", link: '/about' },
-    { id: 2, title: t('home.help'), icon: HelpCircle, img: "/assets/ic.hp4--102.png", link: '/help' },
-    { id: 3, title: t('home.missionCenter'), icon: Target, img: "/assets/ic2912.32.png", link: '/task' },
-    { id: 4, title: t('home.bonusDescription'), icon: Gift, img: "/assets/ic10..1a.png", link: '/introduction' },
+    { id: 1, title: t('home.aboutUs'), icon: FileText, img: "/assets/a43f243ff3fed61d8fc40206da3935c3.png", link: '/about' },
+    { id: 2, title: t('home.help'), icon: HelpCircle, img: "/assets/4d2ffce6ecf19355a64ed7bd9353f1f0.png", link: '/help' },
+    { id: 3, title: t('home.missionCenter'), icon: Target, img: "/assets/05c17173de34008aca6a270498a2a289.png", link: '/task' },
+    { id: 4, title: t('home.bonusDescription'), icon: Gift, img: "/assets/a43f243ff3fed61d8fc40206da3935c3.png", link: '/introduction' },
   ]
   const quickLinks2 = [
     { id: 1, title: t('home.aboutUs'), icon: FileText, img: NOTICES_ICON, link: '/about' },
@@ -72,10 +73,11 @@ export default function HomePage() {
             />
           </div>
 
+        <Link href="/notices">
           <div className="mx-4 mt-4 bg-[#151515] rounded-full">
           <div
 
-            className="w-[100%] p-4 bg-[#151515] flex border border-[#805c33] text-white py-2 rounded-full font-sora text-[14px] font-semibold"
+            className="w-[100%] p-4 bg-[#151515] flex border border-[#805c33] text-white py-2 rounded-full font-sora text-[14px] font-semibold overflow-hidden"
             style={{
               background: 'linear-gradient(rgb(250 179 54 / 0%), rgb(186 140 0 / 10%))',
 
@@ -83,23 +85,17 @@ export default function HomePage() {
           >
 
             <Volume2 className="w-5 h-5 text-[#ffc254] mr-2 flex-shrink-0" />
-            <Marquee gradient={false} speed={15}>
-              {announcements.length > 0 && announcements?.map((announcement: any, index: number) => (
-                <span
-                  key={index}
-                  className="text-[13px] text-sora font-medium text-white mx-1"
-                >
-                  {announcement}
-                </span>
-              ))}
-            </Marquee>
+            <div className="text-[13px] text-sora font-medium text-white truncate min-w-0 flex-1">
+              {/* {announcements.length > 0 && announcements.join(' • ')} */}
+              {t('notices.translation.eternovafilms_open.title')+", "+t('notices.translation.eternovafilms_open.content')}
+            </div>
           </div>
-        </div>
+        </div></Link>
 
         <div className="grid grid-cols-4 gap-4 p-4 mt-2">
           {quickLinks.map((link) => (
             <Link href={link?.link || ''} key={link.id} className="flex flex-col items-center cursor-default">
-              <img src={link.img} className="w-[55px] h-[55px]" />
+              <img src={link.img} className="w-[45px] h-[45px]" />
               <span className="text-[12px] text-white font-sora text-center mt-2 leading-[1.1]">{link.title}</span>
             </Link>
           ))}
@@ -108,11 +104,11 @@ export default function HomePage() {
         <div className="mt-0 p-4">
           <Link href="/social" className="cursor-default">
             {/* <span className="font-sora text-[15px] font-medium text-white">{t('home.socialMedia')}</span> */}
-            <div className="mt-3 bg-[#222222] p-4 flex items-center rounded-[10px]">
+            <div className="mt-3 bg-[#1d1d1d]  p-4 flex items-center rounded-[15px]">
               <div className="flex   h-[40px]">
                 <img src="/assets/fad034213d965b62b7ff7d8b50c40cbc.png" className="w-full h-full object-contain flex-shrink-0 mr-5" />
               </div>
-              <div className="flex ml-1">
+              <div className="flex ml-3">
                 <p className="text-[12px] font-medium font-sora ">{t('home.joinUs')}</p>
               </div>
             </div>
@@ -124,10 +120,10 @@ export default function HomePage() {
           <TrendingNow 
             pageNumber={1}
           />
-          <PopularReels />
+          {/* <PopularReels />
           <TrendingNow 
             pageNumber={2}
-          />
+          /> */}
 
         </main>
       </AnimationPage>

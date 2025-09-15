@@ -20,12 +20,12 @@ const ShortsMemberCenter = () => {
 
       />
       <AnimationPage direction='top'>
-        <div className="p-4 pl-5 pr-5 relative z-10">
+        <div className="p-4 pl-4 pr-4 relative z-10">
 
           <RevenueStatsShorts />
         </div>
 
-        {/* <div className="flex pl-5 pr-5 gap-3 relative z-10 mb-6"> 
+        {/* <div className="flex pl-4 pr-4 gap-3 relative z-10 mb-6"> 
 
           <div className="bg-[#1c1c1c] w-full p-4 rounded-[10px] flex "> 
               <div className="flex  flex-col ">
@@ -64,7 +64,7 @@ const ShortsMemberCenter = () => {
             </div> */}
 
         {/* <PackageCategories /> */}
-        <div className="p-4 pl-5 pr-5 relative z-10">
+        <div className="p-4 pl-4 pr-4 relative z-10">
 
 
 
