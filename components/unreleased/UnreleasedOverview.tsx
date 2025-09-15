@@ -3,6 +3,7 @@ import { getWalletDetails } from '@/lib/api';
 import React, { useEffect, useState } from 'react' 
 import DefaultLoading from '../loaders/DefaultLoading';
 import { useTranslation } from 'react-i18next';
+import { formatWithDecimalsNumber } from '@/utils/formatDecmials';
 
 const UnreleasedOverview: React.FC = () => {
   /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -39,7 +40,7 @@ const UnreleasedOverview: React.FC = () => {
           <div className="flex justify-between w-full relative z-10">
             <div className="flex flex-col items-center justify-center w-full">
               <p className="text-[14px] font-sora mt-1 text-[#936616]">{t('unreleased.toBeReleased')}(USDT)</p>
-              <p className="text-[28px] font-normal text-[#936616] font-sora">{Number(total).toFixed(1)}</p>
+              <p className="text-[28px] font-normal text-[#936616] font-sora">{formatWithDecimalsNumber(Number(total))}</p>
             </div>
           </div>
           <div className="w-full h-full absolute top-0 left-0"

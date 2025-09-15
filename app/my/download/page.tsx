@@ -28,7 +28,7 @@ const AppDownload = () => {
 
                 <div className="mt-[50px] w-full flex flex-col items-center justify-center text-center">
                     <div className="w-[80%] flex flex-col items-center justify-center text-center">
-                        <div className="flex flex-col w-full">
+                        <div className="flex flex-col w-full"> 
                             <button
                                 type="submit"
                                 className="w-[100%] mt-5 border border-[#9E7403] text-[#A06500] py-3 rounded-[13px] font-sora text-[14px] font-semibold hover:bg-transparent transition-colors h-[46px] flex items-center justify-center"

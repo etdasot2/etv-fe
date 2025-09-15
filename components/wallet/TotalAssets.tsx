@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation';
 import DefaultLoading from '../loaders/DefaultLoading';
 import { useTranslation } from 'react-i18next';
+import { formatWithDecimalsNumber } from '@/utils/formatDecmials';
 
 const MyWalletOverview: React.FC = () => {
   /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -40,7 +41,7 @@ const MyWalletOverview: React.FC = () => {
           <div className="flex justify-between w-full relative z-10">
             <div className="flex flex-col items-center justify-center w-full">
                 <p className="text-[12px] font-sora mt-1 text-[#936616]">{t('wallet.totalAssets')}(USDT)</p>
-                <p className="text-[28px] font-normal text-[#936616] font-sora">{Number(total).toFixed(1)}
+                <p className="text-[28px] font-normal text-[#936616] font-sora">{formatWithDecimalsNumber(Number(total))}
                 </p>
             </div>
   

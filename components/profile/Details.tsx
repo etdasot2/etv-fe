@@ -152,21 +152,21 @@ export default function ProfileDetails() {
   <div className="flex justify-between w-full relative z-10 mt-2">
     <Link href="/user/wallet" className="text-center w-[33.333%]">
       <p className="text-[18px] font-semibold text-[#936616] font-sora  flex items-center justify-center">
-        {profileData?.balance?.withdrawal && Number(profileData?.balance?.withdrawal).toFixed(1) || '0.0'}
+        {profileData?.balance?.withdrawal && formatWithDecimalsNumber(Number(profileData?.balance?.withdrawal)) || '0.0'}
         <ChevronRight className="w-4 h-4 " />
       </p>
       <p className="text-[12px] font-sora mt-1 text-[#936616] leading-[1.2]">{t('profile.rechargeAndWithdraw')}</p>
     </Link>
     <Link href="/user/wallet/unreleased" className="text-center w-[33.333%] ">
       <p className="text-[18px] font-semibold text-[#936616] font-sora  flex items-center justify-center">
-        {profileData?.balance?.vault && Number(profileData?.balance?.vault).toFixed(1) || '0.0'} 
+        {profileData?.balance?.vault && formatWithDecimalsNumber(Number(profileData?.balance?.vault)) || '0.0'} 
         <ChevronRight className="w-4 h-4 " />
       </p>
       <p className="text-[12px] font-sora mt-1 text-[#936616] leading-[1.2]">{t('profile.unreleasedPoint')}</p>
     </Link>
     <Link href="/user/wallet/memberPoint" className="text-center w-[33.333%]">
       <p className="text-[18px] font-semibold text-[#936616] font-sora  flex items-center justify-center">
-        {profileData?.balance?.task && Number(profileData?.balance?.task).toFixed(1) || '0.0'}
+        {profileData?.balance?.task && formatWithDecimalsNumber(Number(profileData?.balance?.task)) || '0.0'}
         <ChevronRight className="w-4 h-4 " />
 
       </p>

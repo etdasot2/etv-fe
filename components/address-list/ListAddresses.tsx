@@ -24,6 +24,8 @@ export default function ListAddresses() {
     const searchParams = useSearchParams();
 
     const isSelectAddress = searchParams.get('isSelectAddress') || '';
+    const coinId = searchParams.get('coinId') || '';
+    const chainName = searchParams.get('chainName') || '';
 
     // State for selected address id in select mode
     const [selectedAddressId, setSelectedAddressId] = useState<string | null>(null);
@@ -31,7 +33,12 @@ export default function ListAddresses() {
     useEffect(() => {
         const loadAddresses = async () => {
             try {
-                const data = await getUserAddresses();
+                // Convert coinId to uppercase for API (usdt -> USDT, usdc -> USDC)
+                const coin = coinId ? coinId.toUpperCase() : undefined;
+                // Convert chainName to uppercase for API (trc20 -> TRC20, bep20 -> BEP20)
+                const chain = chainName ? chainName.toUpperCase() : undefined;
+                
+                const data = await getUserAddresses(coin, chain);
                 setAddresses(data);
             } catch (error) {
                 console.error('Error loading addresses:', error);
@@ -40,7 +47,7 @@ export default function ListAddresses() {
             }
         };
         loadAddresses();
-    }, []);
+    }, [coinId, chainName]);
 
     const { openModal } = useModal();
 
@@ -80,21 +87,21 @@ export default function ListAddresses() {
                         isSelectAddress ? (
                             <div
                                 key={addr._id}
-                                className="flex justify-center items-center cursor-pointer"
+                                className="flex   items-center cursor-pointer w-full "
                                 onClick={() => setSelectedAddressId(addr._id)}
                             >
-                                <div className="flex items-center">
-                                    <div className="p-3.5 rounded-[10px] bg-[#1c1c1c] relative w-fit">
-                                        <div className="flex justify-between items-center">
+                                <div className="flex items-center w-full">
+                                    <div className="p-3.5 rounded-[10px] bg-[#1c1c1c] relative w-fit flex-1">
+                                        <div className="flex justify-between items-center ">
                                             <div>
-                                                <p className="text-[14px] font-sora font-semibold text-white break-all">
+                                                <p className="text-[14px] font-sora font-semibold text-white break-all ">
                                                     {addr.address}
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
                                     
-                                    <div className="ml-2">
+                                    <div className="ml-2 flex  flex-shrink-0">
                                         {selectedAddressId !== addr._id ? (
                                             <img src={SELECT_CIRCLE_ICON} className="w-[15.5px] h-[16px]" />
                                         ): (
@@ -108,7 +115,7 @@ export default function ListAddresses() {
                                 key={addr._id}
                                 className="p-3.5 rounded-[10px] bg-[#1c1c1c] relative"
                             >
-                                <div className="flex justify-between items-center">
+                                <div className="flex justify-between items-center pr-[40px]">
                                     <div>
                                         <p className="text-[14px] font-sora font-semibold text-white break-all">
                                             {addr.address}
@@ -150,9 +157,11 @@ export default function ListAddresses() {
                                     setInfoText(t('addressList.pleaseSelectAddress'));
                                 }
                             }}
-                            className="w-full text-white rounded-full font-sora text-[14px] font-semibold hover:bg-transparent transition-colors h-[44px] px-5"
+                            className="w-full  border border-[#ffce4b] text-[#A06500] rounded-full font-sora text-[14px] font-semibold hover:bg-transparent transition-colors h-[44px] px-5"
                             style={{
-                                background: 'linear-gradient(-40deg, #f40208, #ff464b)',
+                                // background: 'linear-gradient(-40deg, #f40208, #ff464b)',
+                                background: 'linear-gradient(136deg, #FFEA8F, #FFD14D)',
+
                             }}
                         >
                             {t('global.ok')}

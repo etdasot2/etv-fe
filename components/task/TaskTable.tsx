@@ -92,7 +92,7 @@ export default function TaskTable() {
             return (
                 <div className={buttonClasses} style={buttonStyle}>
                     {t('task.claimed')}
-                </div> 
+                </div>  
             );
         }
 

@@ -274,9 +274,10 @@ const FundsRecords: React.FC = () => {
                 </span>
 
                 {transaction.category === 'withdraw' && transaction.status === 'processing' &&
-                  <button className="w-[110px] cursor-default flex items-end justify-end mt-1 mb-1 text-end leading-[1.1] rounded-full pr-4 pl-4 p-1 text-[14px] font-medium"
+                  <button className="w-[110px] border border-[#ffce4b] text-[#A06500] cursor-default flex items-end justify-end mt-1 mb-1 text-end leading-[1.1] rounded-full pr-4 pl-4 p-1 text-[14px] font-medium"
                     style={{
-                      background: 'linear-gradient(-40deg, #f40208, #ff464b)',
+                      background: 'linear-gradient(136deg, #FFEA8F, #FFD14D)',
+
                     }}
                     onClick={() => { handleCancelWithdrawal(transaction.withdrawalId) }}
                   // disabled={loadingCancel}

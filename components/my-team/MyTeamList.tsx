@@ -111,7 +111,7 @@ export default function MyTeamList() {
                 )}
 
                 {!hasMore && members.length > 0 && (
-                    <div className="text-center text-[#bdbdbd] py-4 text-sm">{t("myTeam.noMoreResults")}</div>
+                    <div className="text-center text-[#bdbdbd] font-sora py-4 text-[12px]">- {t("myTeam.noMoreResults")} -</div>
                 )}
             </div>
         </>

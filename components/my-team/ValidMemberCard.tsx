@@ -61,6 +61,12 @@ export default function ValidMemberCard({ member }: ValidMemberCardProps) {
                                         VIP2
                                     </div>
                                 }
+                                {member.subscribtionDetails.longVideoSectionSubDate.vip3 && 
+                                    <div className="flex items-center font-sora text-[12px]   text-white">
+                                        <img src="/vip-icons/movie/vip3.png" className="w-[15px] mr-1"/>
+                                        VIP3
+                                    </div>
+                                }
                             </div>
                             <span className="font-sora text-white text-[12px]  flex items-center mt-1">
                                 {t("myTeam.id")}: {member.uuid}

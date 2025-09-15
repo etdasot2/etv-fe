@@ -15,6 +15,8 @@ export default function TeamGenerations() {
         firstGeneration: { totalMembers: 0, totalIncome: 0, todayIncome: 0 },
         secondGeneration: { totalMembers: 0, totalIncome: 0, todayIncome: 0 },
         thirdGeneration: { totalMembers: 0, totalIncome: 0, todayIncome: 0 },
+        fourthGeneration: { totalMembers: 0, totalIncome: 0, todayIncome: 0 },
+        fifthGeneration: { totalMembers: 0, totalIncome: 0, todayIncome: 0 },
     });
     const [isLoading, setIsLoading] = useState(true);
 
@@ -125,19 +127,19 @@ export default function TeamGenerations() {
                         <div className="w-[33.3333%] text-center flex flex-col">
                             <div className="text-[12px] text-[#bdbdbd] font-sora mb-1">{t('team.genTotalIncome')}</div>
                             <div className="text-[16px] text-white font-sora font-semibold">
-                                0
+                                {formatWithDecimalsNumber(data.thirdGeneration.totalIncome)}
                             </div>
                         </div>
                         <div className="w-[33.3333%] text-center flex flex-col">
                             <div className="text-[12px] text-[#bdbdbd] font-sora mb-1 capitalize">{t('team.todayIncome')}</div>
                             <div className="text-[16px] text-white font-sora font-semibold">
-                                0
+                                {formatWithDecimalsNumber(data.thirdGeneration.todayIncome)}
                             </div>
                         </div>
                     </div>
                 </div>
 
-                {/* Third Generation */}
+                {/* Fourth Generation */}
                 <div className="bg-[#282828] rounded-[8px] mb-3 p-2 mt-3 pb-3">
                     <div className="text-white text-[15px] mb-2.5 pl-1.5 font-semibold">
                         {t('team.fourthGeneration')}
@@ -146,25 +148,25 @@ export default function TeamGenerations() {
                         <div className="w-[33.3333%] text-center flex flex-col">
                             <div className="text-[12px] text-[#bdbdbd] font-sora mb-1">{t('team.totalMembers')}</div>
                             <div className="text-[16px] text-[#eebc7a] font-sora font-semibold">
-                            0
+                                {data.fourthGeneration.totalMembers}
                             </div>
                         </div>
                         <div className="w-[33.3333%] text-center flex flex-col">
                             <div className="text-[12px] text-[#bdbdbd] font-sora mb-1">{t('team.genTotalIncome')}</div>
                             <div className="text-[16px] text-white font-sora font-semibold">
-                                0
+                                {formatWithDecimalsNumber(data.fourthGeneration.totalIncome)}
                             </div>
                         </div>
                         <div className="w-[33.3333%] text-center flex flex-col">
                             <div className="text-[12px] text-[#bdbdbd] font-sora mb-1 capitalize">{t('team.todayIncome')}</div>
                             <div className="text-[16px] text-white font-sora font-semibold">
-                                0
+                                {formatWithDecimalsNumber(data.fourthGeneration.todayIncome)}
                             </div>
                         </div>
                     </div>
                 </div>
 
-                {/* Third Generation */}
+                {/* Fifth Generation */}
                 <div className="bg-[#282828] rounded-[8px] mb-3 p-2 mt-3 pb-3">
                     <div className="text-white text-[15px] mb-2.5 pl-1.5 font-semibold">
                         {t('team.fifthGeneration')}
@@ -173,19 +175,19 @@ export default function TeamGenerations() {
                         <div className="w-[33.3333%] text-center flex flex-col">
                             <div className="text-[12px] text-[#bdbdbd] font-sora mb-1">{t('team.totalMembers')}</div>
                             <div className="text-[16px] text-[#eebc7a] font-sora font-semibold">
-                            0
+                                {data.fifthGeneration.totalMembers}
                             </div>
                         </div>
                         <div className="w-[33.3333%] text-center flex flex-col">
                             <div className="text-[12px] text-[#bdbdbd] font-sora mb-1">{t('team.genTotalIncome')}</div>
                             <div className="text-[16px] text-white font-sora font-semibold">
-                                0
+                                {formatWithDecimalsNumber(data.fifthGeneration.totalIncome)}
                             </div>
                         </div>
                         <div className="w-[33.3333%] text-center flex flex-col">
                             <div className="text-[12px] text-[#bdbdbd] font-sora mb-1 capitalize">{t('team.todayIncome')}</div>
                             <div className="text-[16px] text-white font-sora font-semibold">
-                                0
+                                {formatWithDecimalsNumber(data.fifthGeneration.todayIncome)}
                             </div>
                         </div>
                     </div>

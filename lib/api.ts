@@ -1513,12 +1513,16 @@ export const bindAddress = async (data: {
     }
 };
 
-export const getUserAddresses = async () => {
+export const getUserAddresses = async (coin?: string, chainName?: string) => {
     const token = getToken();
     if (!token) throw new Error('No token found');
 
     try {
-        const response = await apiClient.get('/global/user-addresses', {
+        const params = new URLSearchParams();
+        if (coin) params.append('coin', coin);
+        if (chainName) params.append('chainName', chainName);
+
+        const response = await apiClient.get(`/global/user-addresses?${params.toString()}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -1803,3 +1807,35 @@ export const telegramReward = async (telegramUsername: string) => {
   
     return response.data;
   };
+
+
+  export const fetchMissionCenter = async () => {
+    const token = getToken();
+    if (!token) throw new Error('No token found');
+
+    const response = await apiClient.get('/global/mission-center', {
+        headers: { Authorization: `Bearer ${token}` },
+    });
+
+    return response.data;
+};
+
+export const claimMission = async (missionId: string) => {
+    const token = getToken();
+    if (!token) throw new Error('No token found');
+
+    const [type, requirementStr] = missionId.split("-");
+    const requirement = parseInt(requirementStr);
+
+    const response = await apiClient.post(
+        '/global/claim-mission-reward',
+        { type, requirement },
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }
+    );
+
+    return response.data;
+};

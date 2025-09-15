@@ -41,7 +41,10 @@ const Modal = () => {
                             </div>
                         </div>
                         <div className="flex items-center justify-center"> 
-                        <p className="text-center justify-center flex items-center text-white font-sora text-base font-medium mt-10 mb-4">{content?.message}</p>
+                            <div className="flex flex-col items-center justify-center mt-8">
+                                {/* <img src="/assets/cancel-width.png " className="w-[200px] h-[200px]" /> */}
+                                <p className="text-center justify-center flex items-center text-white font-sora text-base font-medium  mb-4 mt-2">{content?.message}</p>
+                            </div>
                         </div>
                         <div className="flex gap-4 justify-end">
 

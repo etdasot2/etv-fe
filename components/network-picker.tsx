@@ -132,7 +132,7 @@ export function NetworkPicker({
                                   className="w-[40px] h-[40px] rounded-full"
                                 />
                               ) : (
-                                <div className="w-8 h-8 rounded-full bg-[#eebc7a] flex items-center justify-center">
+                                <div className="w-[40px] h-[40px] rounded-full  flex items-center justify-center">
                                   {option.icon}
                                 </div>
                               )}
@@ -173,7 +173,7 @@ export function NetworkPicker({
                                 className="w-[40px] h-[40px] rounded-full"
                               />
                             ) : (
-                              <div className="w-[40px] h-[40px] rounded-full bg-[#eebc7a] flex items-center justify-center">
+                              <div className="w-[40px] h-[40px] rounded-full  flex items-center justify-center">
                                 {option.icon}
                               </div>
                             )}

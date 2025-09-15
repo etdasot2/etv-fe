@@ -16,6 +16,7 @@ import { useTranslation } from 'react-i18next'
 import { CHOOSE_ADDRESS_ICON, USDC_ICON } from '../custom-icons'
 import { useSecurityVerification } from '@/context/FundsPasswordContext'
 import { formatWithDecimalsNumber } from '@/utils/formatDecmials'
+import { NetworkPicker } from '../network-picker'
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
@@ -79,12 +80,106 @@ export default function WithdrawForm() {
   const [fees, setFees] = useState({ handlingFee: 0, taxFee: 0, actualAmount: 0 })
   const { setInfoText } = useInfoModal()
   const router = useRouter();
+  const [isCurrencyPickerOpen, setIsCurrencyPickerOpen] = useState(false);
+  const [isNetworkPickerOpen, setIsNetworkPickerOpen] = useState(false);
+  const [selectedCurrency, setSelectedCurrency] = useState('usdt');
+  const [selectedNetwork, setSelectedNetwork] = useState('trc20');
+  const [rememberedAddresses, setRememberedAddresses] = useState<{[key: string]: string}>({});
   const { register, handleSubmit, formState: { errors }, setValue, watch } = useForm<WithdrawFormInputs>({
     resolver: yupResolver(schema)
   })
 
   const amount = watch('amount')
 
+  // Network options based on selected currency
+  const getNetworkOptions = () => {
+    if (selectedCurrency === 'usdt') {
+      return [
+        {
+          key: 'trc20',
+          icon: '/assets/tron-logo.png',
+          label: 'TRC20',
+          description: 'Tron Network'
+        }
+      ];
+    } else if (selectedCurrency === 'usdc') {
+      return [
+        {
+          key: 'bep20',
+          icon: '/assets/bnb-logo.png',
+          label: 'BEP20',
+          description: 'Binance Smart Chain'
+        }
+      ];
+    }
+    return [];
+  };
+
+  const networkOptions = getNetworkOptions();
+
+  const getSelectedCurrencyLabel = () => {
+    return selectedCurrency === 'usdt' ? 'USDT' : 'USDC';
+  };
+
+  const getSelectedNetworkLabel = () => {
+    const network = networkOptions.find(opt => opt.key === selectedNetwork);
+    return network ? network.label : (selectedCurrency === 'usdt' ? 'TRC20' : 'BEP20');
+  };
+
+  // Currency options for the picker
+  const currencyOptions = [
+    {
+      key: 'usdt',
+      icon: <USDTIconDefault className="w-8 h-8" />,
+      label: 'USDT',
+      description: 'Tether USD'
+    },
+    {
+      key: 'usdc',
+      icon: <img src={USDC_ICON} className="w-8 h-8" alt="USDC" />,
+      label: 'USDC',
+      description: 'USD Coin'
+    }
+  ];
+
+  // Reset network when currency changes
+  React.useEffect(() => {
+    if (selectedCurrency === 'usdt') {
+      setSelectedNetwork('trc20');
+    } else if (selectedCurrency === 'usdc') {
+      setSelectedNetwork('bep20');
+    }
+  }, [selectedCurrency]);
+
+  // Simple function to handle currency/network changes
+  const handleCurrencyNetworkChange = (newCurrency: string, newNetwork: string) => {
+    const currentAddress = watch('address');
+    const currentKey = `${selectedCurrency}-${selectedNetwork}`;
+    
+    // Store current address if it exists
+    if (currentAddress) {
+      setRememberedAddresses(prev => ({
+        ...prev,
+        [currentKey]: currentAddress
+      }));
+    }
+    
+    // Clear address field
+    setValue('address', '');
+    
+    // Update currency and network
+    setSelectedCurrency(newCurrency);
+    setSelectedNetwork(newNetwork);
+    
+    // Restore remembered address for new combination
+    const newKey = `${newCurrency}-${newNetwork}`;
+    const rememberedAddress = rememberedAddresses[newKey];
+    if (rememberedAddress) {
+      setTimeout(() => {
+        setValue('address', rememberedAddress);
+      }, 100);
+    }
+  };
 
   useEffect(() => {
     const fetchBalance = async () => {
@@ -107,8 +202,24 @@ export default function WithdrawForm() {
       const fetchAddressDetails = async () => {
         try {
           const addressDetails = await selectAddress(addressId);
-          // Assume the returned data contains the address value in addressDetails.address
+          
+          // Set currency and network based on address details
+          const coin = addressDetails.coin?.toLowerCase() || 'usdt';
+          const chainName = addressDetails.chainName?.toLowerCase() || 'trc20';
+          
+          // Set the address value
           setValue('address', addressDetails.address.address);
+          
+          // Update currency and network
+          setSelectedCurrency(coin);
+          setSelectedNetwork(chainName);
+          
+          // Store the address for this currency/network combination
+          const currentKey = `${coin}-${chainName}`;
+          setRememberedAddresses(prev => ({
+            ...prev,
+            [currentKey]: addressDetails.address.address
+          }));
         } catch (error: any) {
           if (error === 'unathoruziedAddress') {
             setInfoText(t('addressList.errors.unAuthroziedAddress'));
@@ -267,23 +378,36 @@ export default function WithdrawForm() {
             <h2 className="text-[14px] font-sora font-medium mb-2 uppercase">{t('withdraw.selectCurrency')}</h2>
             <div className="pt-1 flex items-center gap-2">
 
-              <div className="flex items-center bg-gradient-to-r from-[#b37106] via-[#c18610] to-[#7c4804] p-2 rounded-lg pl-[11px] pr-[11px]"
-                style={{
-                  // background: 'linear-gradient(-40deg, #f40208, #ff464b)',
-                }}
+              <div 
+                className={`flex items-center p-2 rounded-lg pl-[11px] pr-[11px] cursor-pointer transition-all duration-200 ${
+                  selectedCurrency === 'usdt' 
+                    ? 'bg-gradient-to-r from-[#b37106] via-[#c18610] to-[#7c4804]' 
+                    : ''
+                }`}
+                onClick={() => handleCurrencyNetworkChange('usdt', 'trc20')}
               >
                 <USDTIconDefault className="w-[24px] h-[24px]" />
-                <span className="uppercase text-[16px] font-sora ml-1 font-medium">USDT</span>
+                <span className={`uppercase text-[16px] font-sora ml-1 font-medium ${
+                  selectedCurrency === 'usdt' ? 'text-white' : 'text-[#fff9]'
+                }`}>
+                  USDT
+                </span>
               </div>
 
-              <div className="flex items-center p-2 rounded-lg pl-[11px] pr-[11px]"
-                onClick={() => {
-                  setInfoText(t('global.stayTuned'))
-
-                }}
+              <div 
+                className={`flex items-center p-2 rounded-lg pl-[11px] pr-[11px] cursor-pointer transition-all duration-200 ${
+                  selectedCurrency === 'usdc' 
+                    ? 'bg-gradient-to-r from-[#b37106] via-[#c18610] to-[#7c4804]' 
+                    : ''
+                }`}
+                onClick={() => handleCurrencyNetworkChange('usdc', 'bep20')}
               >
                 <img src={USDC_ICON} className="w-[24px] h-[24px]" />
-                <span className="uppercase text-[16px]  text-[#fff9] font-sora ml-1 font-medium">USDC</span>
+                <span className={`uppercase text-[16px] font-sora ml-1 font-medium ${
+                  selectedCurrency === 'usdc' ? 'text-white' : 'text-[#fff9]'
+                }`}>
+                  USDC
+                </span>
               </div>
 
             </div>
@@ -292,15 +416,16 @@ export default function WithdrawForm() {
 
           <div className="mt-6">
             <h2 className="text-[14px] font-sora font-medium mb-2 uppercase">{t('withdraw.mainnet')}</h2>
-            <div
+            <button
+              type="button"
               className="w-full bg-[#1c1c1c] p-4 pt-3 pb-3 rounded-lg flex items-center justify-between"
-            // onClick={() => setIsNetworkPopupOpen(true)}
+              onClick={() => setIsNetworkPickerOpen(true)}
             >
               <div className="flex items-center">
-                <span className="font-sora text-[13px] font-medium">TRC20</span>
+                <span className="font-sora text-[13px] font-medium">{getSelectedNetworkLabel()}</span>
               </div>
-              {/* <ChevronRight className="w-4 h-4 text-white" /> */}
-            </div>
+              <ChevronRight className="w-4 h-4 text-white" />
+            </button>
           </div>
 
 
@@ -312,20 +437,20 @@ export default function WithdrawForm() {
             onClick={()=>{
 
 
-              router.replace('/user/wallet/addressList/?coinId=1&chainName=TRX&isSelectAddress=true')
+              router.replace(`/user/wallet/addressList/?coinId=${selectedCurrency}&chainName=${selectedNetwork}&isSelectAddress=true`)
             }}
             >
               {/* <div className="w-full bg-[#1c1c1c] rounded-[10px] font-medium pl-4 text-[#737373] pr-4 pt-3 pb-3 font-sora text-[14px] outline-none border-none h-[45px] disabled:cursor-default disabled:opacity-1">
               {t('withdraw.withdrawalAddressPL')}
               </div> */}
-              <Input
-                type="text"
-                {...register('address')}
-                placeholder={t('withdraw.withdrawalAddressPL')}
-                className="w-full bg-[#1c1c1c] rounded-[10px] pointer-events-none font-medium pl-4 break-words pr-[50px] pt-3 pb-3 font-sora text-[14px] outline-none border-none h-[45px] disabled:cursor-default disabled:opacity-1"
-                autoComplete="off"
-                readOnly
-              />
+              <div
+                className={`w-full bg-[#1c1c1c] rounded-[10px] font-medium pl-4 pr-[50px] pt-3 pb-3 font-sora text-[14px] min-h-[45px] break-all whitespace-pre-wrap ${
+                  watch('address') ? 'text-white' : 'text-[#737373]'
+                }`}
+                style={{ wordBreak: 'break-all' }}
+              >
+                {watch('address') || t('withdraw.withdrawalAddressPL')}
+              </div>
 
               <div className="absolute right-4 top-3.5">
                 <img src={CHOOSE_ADDRESS_ICON} className="w-[22px] h-[18px]" />
@@ -417,7 +542,19 @@ export default function WithdrawForm() {
 
         <CryptoAndNetworkPopup open={isNetworkPopupOpen} onClose={() => setIsNetworkPopupOpen(false)} />
 
+
       </form>
+        <NetworkPicker
+          isOpen={isNetworkPickerOpen}
+          onClose={() => setIsNetworkPickerOpen(false)}
+          title={t('withdraw.mainnet')}
+          options={networkOptions}
+          onSelect={(option) => {
+            handleCurrencyNetworkChange(selectedCurrency, option);
+            setIsNetworkPickerOpen(false);
+          }}
+          defaultValue={selectedNetwork}
+        />
     </>
   )
 }

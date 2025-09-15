@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Eye, EyeOff, AlertTriangle } from 'lucide-react';
+import { Eye, EyeOff, AlertTriangle, ChevronRight } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -11,6 +11,9 @@ import DefaultLoading from '../loaders/DefaultLoading';
 import { useInfoModal } from '@/context/InfoModalContext';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
+import { NetworkPicker } from '../network-picker';
+import { USDTIconDefault } from '../icons/global';
+import { USDC_ICON } from '../custom-icons';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
@@ -32,6 +35,10 @@ const BindingAddressForm: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const { setInfoText } = useInfoModal();
     const router = useRouter();
+    const [isCurrencyPickerOpen, setIsCurrencyPickerOpen] = useState(false);
+    const [isNetworkPickerOpen, setIsNetworkPickerOpen] = useState(false);
+    const [selectedCurrency, setSelectedCurrency] = useState('usdt');
+    const [selectedNetwork, setSelectedNetwork] = useState('trc20');
 
     const {
         register,
@@ -41,12 +48,72 @@ const BindingAddressForm: React.FC = () => {
         resolver: yupResolver(schema),
     });
 
+    // Network options based on selected currency
+    const getNetworkOptions = () => {
+        if (selectedCurrency === 'usdt') {
+            return [
+                {
+                    key: 'trc20',
+                    icon: '/assets/tron-logo.png',
+                    label: 'TRC20',
+                    description: 'Tron Network'
+                }
+            ];
+        } else if (selectedCurrency === 'usdc') {
+            return [
+                {
+                    key: 'bep20',
+                    icon: '/assets/bnb-logo.png',
+                    label: 'BEP20',
+                    description: 'Binance Smart Chain'
+                }
+            ];
+        }
+        return [];
+    };
+
+    const networkOptions = getNetworkOptions();
+
+    const getSelectedCurrencyLabel = () => {
+        return selectedCurrency === 'usdt' ? 'USDT' : 'USDC';
+    };
+
+    const getSelectedNetworkLabel = () => {
+        const network = networkOptions.find(opt => opt.key === selectedNetwork);
+        return network ? network.label : (selectedCurrency === 'usdt' ? 'TRC20' : 'BEP20');
+    };
+
+    // Currency options for the picker
+    const currencyOptions = [
+        {
+            key: 'usdt',
+            icon: <USDTIconDefault className="w-8 h-8" />,
+            label: 'USDT',
+            description: 'Tether USD'
+        },
+        {
+            key: 'usdc',
+            icon: <img src={USDC_ICON} className="w-8 h-8" alt="USDC" />,
+            label: 'USDC',
+            description: 'USD Coin'
+        }
+    ];
+
+    // Reset network when currency changes
+    React.useEffect(() => {
+        if (selectedCurrency === 'usdt') {
+            setSelectedNetwork('trc20');
+        } else if (selectedCurrency === 'usdc') {
+            setSelectedNetwork('bep20');
+        }
+    }, [selectedCurrency]);
+
     const onSubmit = async (data: BindingAddressFormData) => {
         setIsLoading(true)
         try {
             await bindAddress({
-                rechargeChannel: 'USDT',
-                mainnet: "TRC20",
+                rechargeChannel: getSelectedCurrencyLabel(),
+                mainnet: getSelectedNetworkLabel(),
                 address: data.address,
             });
             setInfoText(t('addressList.bidingAddress.successBound'));
@@ -55,8 +122,8 @@ const BindingAddressForm: React.FC = () => {
         } catch (error: any) {
             console.log(error)
             const errorMessage = error.message || error;
-            if (errorMessage === 'invalidUSDTTRC20Address') {
-                setInfoText(t('addressList.bidingAddress.errors.invalidAddress'));
+            if (errorMessage === 'invalidAddress') {
+                setInfoText(t('addressList.bidingAddress.errors.invalidAddress', { currency: getSelectedCurrencyLabel(), network: getSelectedNetworkLabel() }));
             } else if (errorMessage === 'addressAlreadyBind') {
                 setInfoText(t('addressList.bidingAddress.errors.addressAlreadyExists'));
             } else if (errorMessage === 'onlyOneAddressAllowed') {
@@ -95,13 +162,14 @@ const BindingAddressForm: React.FC = () => {
                         {t('addressList.bidingAddress.inputs.rechrageChannel.label')}
                     </span>
                     <div className="relative mt-2">
-                        <Input
-                            type="text"
-                            value={"USDT"}
-                            placeholder={t('profile.fundsPassword.inputs.email.placeholder')}
-                            className="w-full bg-[#20201f] rounded-[10px] font-medium pl-4 pr-4 pt-3 pb-3 font-sora text-[14px] outline-none border-none h-[45px] disabled:opacity-1 disabled:cursor-default"
-                            disabled={true}
-                        />
+                        <button
+                            type="button"
+                            className="w-full bg-[#20201f] rounded-[10px] font-medium pl-4 pr-4 pt-3 pb-3 font-sora text-[14px] outline-none border-none h-[45px] flex items-center justify-between text-left"
+                            onClick={() => setIsCurrencyPickerOpen(true)}
+                        >
+                            <span className="text-white">{getSelectedCurrencyLabel()}</span>
+                            <ChevronRight className="w-4 h-4 text-white" />
+                        </button>
                     </div>
                 </div>
 
@@ -110,13 +178,14 @@ const BindingAddressForm: React.FC = () => {
                         {t('addressList.bidingAddress.inputs.mainnet.label')}
                     </span>
                     <div className="relative mt-2">
-                        <Input
-                            type="text"
-                            value={"TRC20"}
-                            placeholder={t('profile.fundsPassword.inputs.verifyCode.placeholder')}
-                            className="w-full bg-[#20201f] rounded-[10px] font-medium pl-4 pr-4 pt-3 pb-3 font-sora text-[14px] outline-none border-none h-[45px]"
-                            autoComplete="off"
-                        />
+                        <button
+                            type="button"
+                            className="w-full bg-[#20201f] rounded-[10px] font-medium pl-4 pr-4 pt-3 pb-3 font-sora text-[14px] outline-none border-none h-[45px] flex items-center justify-between text-left"
+                            onClick={() => setIsNetworkPickerOpen(true)}
+                        >
+                            <span className="text-white">{getSelectedNetworkLabel()}</span>
+                            <ChevronRight className="w-4 h-4 text-white" />
+                        </button>
                     </div>
                 </div>
 
@@ -156,6 +225,30 @@ const BindingAddressForm: React.FC = () => {
             </form>
 
             {isLoading && <DefaultLoading />}
+
+            <NetworkPicker
+                isOpen={isCurrencyPickerOpen}
+                onClose={() => setIsCurrencyPickerOpen(false)}
+                title={t('addressList.bidingAddress.inputs.rechrageChannel.label')}
+                options={currencyOptions}
+                onSelect={(option) => {
+                    setSelectedCurrency(option);
+                    setIsCurrencyPickerOpen(false);
+                }}
+                defaultValue={selectedCurrency}
+            />
+
+            <NetworkPicker
+                isOpen={isNetworkPickerOpen}
+                onClose={() => setIsNetworkPickerOpen(false)}
+                title={t('addressList.bidingAddress.inputs.mainnet.label')}
+                options={networkOptions}
+                onSelect={(option) => {
+                    setSelectedNetwork(option);
+                    setIsNetworkPickerOpen(false);
+                }}
+                defaultValue={selectedNetwork}
+            />
         </>
     );
 };

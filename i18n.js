@@ -905,7 +905,7 @@ const resources = {
                         }
                     },
                     "errors": {
-                        "invalidAddress": "The address is invalid, please enter the correct USDT-TRC20 address",
+                        "invalidAddress": "The address is invalid, please enter the correct {{currency}}-{{network}} address",
                         "singleAddressLimit": "Only 1 addresses are allowed to be bound, If you need to change, please contact customer service",
                         "addressAlreadyExists": "The address already exists, please do not add it again",
                     },
@@ -963,6 +963,24 @@ const resources = {
                     "notInGroup": "The Telegram username you entered is not in the group. Please apply again. Make sure you have joined the group and that your Telegram username is correct.",
                     "userNameUsed": "Telegram username already used. Contact customer service if you believe this is incorrect."
                 }
+            },
+            "missionsCenter": {
+                "title": "Task List",
+                "direct": "Direct Task",
+                "team": "Team Task",
+                "growth": "Growth Task",
+                "progress": "Progress",
+                "added": "Number to be collected: <span class='text-[#eebc7a]'>{{count}}/{{total}}</span>",
+                "alreadyClaimed": "Claimed",
+                "isClaiming": "Claiming",
+                "inProgress": "In progress",
+                "claimReward": "Claim",
+                "addDirectActiveMembers": "Successfully invite {{count}} members from your first-generation to subscribe to any VIP package, and you will receive {{reward}} USDT",
+                "addTeamMembers": "Receive {{reward}} USDT when your second- and third-generation subscriptions to VIP1 or above reach a total of {{count}} members",
+                "addGrowthMembers": "Add {{count}} total active members",
+                "rewardClaimed": "Reward claimed successfully",
+                "claimFailed": "Failed to claim reward",
+
             }
         }
     },
@@ -1881,6 +1899,23 @@ const resources = {
             },
             "shortsRevenue": {
                 "title": "Шортс"
+            },
+            "missionsCenter": {
+                "title": "Центр миссий",
+                "direct": "Прямые",
+                "team": "Команда",
+                "growth": "Рост",
+                "progress": "Прогресс",
+                "added": "Добавлено {{count}} из {{total}}",
+                "alreadyClaimed": "Получено",
+                "isClaiming": "Получение",
+                "inProgress": "В процессе",
+                "claimReward": "Получить",
+                "addDirectActiveMembers": "Добавить {{count}} прямых активных участников",
+                "addTeamMembers": "Добавить {{count}} участников команды",
+                "addGrowthMembers": "Добавить {{count}} общих активных участников",
+                "rewardClaimed": "Награда успешно получена",
+                "claimFailed": "Не удалось получить награду"
             },
             "telegram": {
                 "title": "Официальный Телеграм",
