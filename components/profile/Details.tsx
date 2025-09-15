@@ -107,7 +107,7 @@ export default function ProfileDetails() {
   </div>
   <div className="flex-grow">
     <h1 className="font-medium text-[20px] font-sora">
-      {profileData?.user.username || ''}
+      {formatUsername(profileData?.user.username || '')}
     </h1>
     <div className="flex items-center text-gray-400">
       <span className="text-[12px] text-[#ababb3] font-sora font-medium">
