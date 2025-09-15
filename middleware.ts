@@ -128,7 +128,7 @@ const protectedRoutes = [
 
 // List of public routes - only unauthenticated users can access
 // const publicRoutes = ["/login", "/signup", "/forget-password"]
-const publicRoutes = ['/login', '/forget-password', '/join', '/terms'];
+const publicRoutes = ['/user/login', '/forget-password', '/user/reg', '/terms'];
 
 // List of independent routes - both authenticated and unauthenticated users can access
 const independentRoutes = ["/my/download", "/my/lang", "/terms", "/live-chat"]
@@ -171,7 +171,7 @@ export async function middleware(req: NextRequest) {
 
     if (!token) {
       console.log("No token found, redirecting to login")
-      return NextResponse.redirect(new URL("/login", req.url))
+      return NextResponse.redirect(new URL("/user/login", req.url))
     }
 
     try {
@@ -180,7 +180,7 @@ export async function middleware(req: NextRequest) {
       return NextResponse.next()
     } catch (err) {
       console.log("Token invalid, redirecting to login")
-      return NextResponse.redirect(new URL("/login", req.url))
+      return NextResponse.redirect(new URL("/user/login", req.url))
     }
   }
 

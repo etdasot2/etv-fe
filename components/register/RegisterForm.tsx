@@ -152,11 +152,11 @@ const RegistrationForm: React.FC = () => {
       <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-md space-y-3 pt-6 bg-[#ffffff0d] backdrop-blur-[0.5rem] p-3.5 rounded-[20px] relative   mb-[40px]">
         {/* Username Input */}
         <div className="flex items-center w-full justify-between">
-          <span className="font-sora text-base font-semibold w-[30%] leading-[1] text-[#eebc7a]">Account Registration</span>
-          <p className="w-[55%] leading-[1.2] font-sora text-[#fff9] text-[12px] font-semibold">Already have an account?<span className="text-[#eebc7a] ml-[2px]" onClick={()=>{router.push("/login")}}>Login now</span></p>
+          <span className="font-sora text-base font-semibold w-[30%] leading-[1] text-[#eebc7a]">{t('register.accountRegistration')}</span>
+          <p className="w-[55%] leading-[1.2] font-sora text-[#fff9] text-[12px] font-semibold">{t('register.alreadyHaveAccount')}<span className="text-[#eebc7a] ml-[2px]" onClick={()=>{router.push("/user/login")}}>{t('register.loginNow')}</span></p>
         </div>
         <div className="relative">
-          <label className="text-[14px] font-sora text-[#fffc] font-semibold">Username</label>
+          <label className="text-[14px] font-sora text-[#fffc] font-semibold">{t('register.inputs.username.placeholder')}</label>
           <Input
             type="text"
             placeholder={t('register.inputs.username.placeholder')}
@@ -168,7 +168,7 @@ const RegistrationForm: React.FC = () => {
 
 
         <div className="relative">
-        <label className="text-[14px] font-sora text-[#fffc] font-semibold">E-MAIL</label>
+        <label className="text-[14px] font-sora text-[#fffc] font-semibold">{t('register.inputs.email.placeholder')}</label>
            
           <Input
             type="email"
@@ -180,7 +180,7 @@ const RegistrationForm: React.FC = () => {
 
         {/* Email Input */}
         <div className="relative">
-        <label className="text-[14px] font-sora text-[#fffc] font-semibold">Mobile phone number</label>
+        <label className="text-[14px] font-sora text-[#fffc] font-semibold">{t('register.inputs.phone.placeholder')}</label>
           <Input
             type="phoneNumber"
             placeholder={t('register.inputs.phone.placeholder')}
@@ -209,7 +209,7 @@ const RegistrationForm: React.FC = () => {
           placeholder={t('register.inputs.password.placeholder')}
           register={register('password')}
           error={errors.password?.message}
-          label='Login Password'
+          label={t('register.inputs.password.placeholder')}
         />
 
         {/* Confirm Password Input using PasswordInput Component */}
@@ -218,12 +218,12 @@ const RegistrationForm: React.FC = () => {
           placeholder={t('register.inputs.confirmPassword.placeholder')}
           register={register('confirmPassword')}
           error={errors.confirmPassword?.message}
-          label='Confirm Password'
+          label={t('register.inputs.confirmPassword.placeholder')}
         />
 
 
         <div className="relative">
-        <label className="text-[14px] font-sora text-[#fffc] font-semibold">Invitation Code</label>
+        <label className="text-[14px] font-sora text-[#fffc] font-semibold">{t('register.inputs.invitationCode.placeholder')}</label>
          
           <Input
             placeholder={t('register.inputs.invitationCode.placeholder')}
@@ -246,7 +246,7 @@ const RegistrationForm: React.FC = () => {
           }}
         >  
         <div className="flex items-center justify-center">
-            <span className="text-[14px] font-sora font-semibold mr-2">Register</span>
+            <span className="text-[14px] font-sora font-semibold mr-2">{t('register.buttons.register')}</span>
           <img src={ARROW_RIGHT_ICON} className="pointer-events-none w-[12px]"/> 
         </div>
         </button>

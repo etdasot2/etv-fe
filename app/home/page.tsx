@@ -102,7 +102,7 @@ export default function HomePage() {
         </div>
 
         <div className="mt-0 p-4">
-          <Link href="/social" className="cursor-default">
+          <Link href="https://t.me/EternovaFilms2" target="_blank" className="cursor-default">
             {/* <span className="font-sora text-[15px] font-medium text-white">{t('home.socialMedia')}</span> */}
             <div className="mt-3 bg-[#1d1d1d]  p-4 flex items-center rounded-[15px]">
               <div className="flex   h-[40px]">

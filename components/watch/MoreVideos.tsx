@@ -215,9 +215,7 @@ const MoreVideos: React.FC<MoreVideosProps> = ({ source, p, showSearch, videoId 
           <div className="flex items-center">{t("watch.explore")}</div>
         </h2> */}
 
-        {noResults ? (
-          <div className="text-center py-10 text-gray-400 font-sora">No results found for "{searchQuery}"</div>
-        ) : (
+       
           <div className="grid grid-cols-2 gap-x-4 gap-y-6">
             {trendingVideos.map((video: any, index: number) => {
               return (
@@ -236,13 +234,13 @@ const MoreVideos: React.FC<MoreVideosProps> = ({ source, p, showSearch, videoId 
                       alt={video.headline}
                     />
                     <div className="absolute top-0 left-0 rounded-[13px_0px_14px] text-[#A06A05] bg-gradient-to-r from-[#FFE88B] to-[#FFD457] text-[13px] font-medium p-[5px_13px] font-sora ">
-                      Watch
+                      {t('revenue.score.watch')}
                     </div>
                   </div>
 
                   <div className="flex w-full mt-3">
                     <div className="flex flex-col ml-0 flex-1">
-                      <h1 className="font-sora text-[14px] leading-[1.1] font-semibold line-clamp-2">
+                      <h1 className="font-sora text-[14px] leading-[1.1] font-semibold line-clamp-1">
                         {video.headline}
                       </h1>
                     </div>
@@ -251,16 +249,7 @@ const MoreVideos: React.FC<MoreVideosProps> = ({ source, p, showSearch, videoId 
               )
             })}
           </div>
-        )}
-
-        {reachedLimit && (
-          <div className="mt-8 mb-4 text-center">
-            <div className="bg-[#252525] rounded-lg p-4 text-white font-sora">
-              <p className="font-bold">Do tasks to see more videos</p>
-              <p className="text-sm text-gray-400 mt-1">Complete tasks to unlock additional content</p>
-            </div>
-          </div>
-        )}
+{/*  
 
         {!reachedLimit && hasMore && trendingVideos.length > 0 && !noResults && (
           <div className="flex justify-center mt-6">
@@ -270,7 +259,7 @@ const MoreVideos: React.FC<MoreVideosProps> = ({ source, p, showSearch, videoId 
               <div className="animate-pulse text-gray-400 text-sm">Scroll for more videos</div>
             )}
           </div>
-        )}
+        )} */}
       </div>
     </>
   )

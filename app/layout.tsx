@@ -21,7 +21,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Eternova Films",
-  description: "Watching movies and earning money",
+  description: "Start earning income by watching movies and listening to music",
 };
 
 export default function RootLayout({

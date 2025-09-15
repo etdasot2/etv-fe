@@ -31,7 +31,7 @@ const { t } = useTranslation();
       <div className='relative z-9'> 
       <ProfileDetails />
 
-      <Link href="/agentPromotion" className="rounded-lg cursor-default mb-4 flex items-center justify-between relative pl-4 pr-4"
+      <Link href="http://t.me/ETFDylan37" target="_blank" className="rounded-lg cursor-default mb-4 flex items-center justify-between relative pl-4 pr-4"
 
 
       >

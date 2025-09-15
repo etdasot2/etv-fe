@@ -168,13 +168,13 @@ export default function LoginForm() {
 
                 <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-md space-y-3 pt-6 bg-[#ffffff0d] backdrop-blur-[0.5rem] p-3.5 rounded-[20px] relative   mb-[40px]">
                 <div className="flex items-start w-full justify-between">
-          <span className="font-sora text-base font-semibold w-[30%] leading-[1] text-[#eebc7a]">Account Login</span>
-          <p className="w-[55%] leading-[1.2] font-sora text-[#fff9] text-[12px] font-semibold text-right">No account yet?<span className="text-[#eebc7a] ml-[2px]" onClick={()=>{router.push("/reg/user")}}>Register now</span></p>
+          <span className="font-sora text-base font-semibold w-[30%] leading-[1] text-[#eebc7a]">{t('login.accountLogin')}</span>
+          <p className="w-[55%] leading-[1.2] font-sora text-[#fff9] text-[12px] font-semibold text-right">{t('login.noAccountYet')}<span className="text-[#eebc7a] ml-[2px]" onClick={()=>{router.push("/user/reg")}}>{t('login.registerNow')}</span></p>
         </div>
 
                     <div className="relative">
 
-          <label className="text-[14px] font-sora text-[#fffc] font-semibold">Username</label>
+          <label className="text-[14px] font-sora text-[#fffc] font-semibold">{t(`login.inputs.${loginType}.placeholder`)}</label>
                          
                         <Input
                             type={loginType === 'username' ? 'text' : 'email'}
@@ -187,7 +187,7 @@ export default function LoginForm() {
 
                     <div className="relative">
 
-          <label className="text-[14px] font-sora text-[#fffc] font-semibold">Password</label>
+          <label className="text-[14px] font-sora text-[#fffc] font-semibold">{t('login.inputs.password.placeholder')}</label>
                         
                         <Input
                             type={showPassword ? 'text' : 'password'}
@@ -226,7 +226,7 @@ export default function LoginForm() {
           }}
         >  
         <div className="flex items-center justify-center">
-            <span className="text-[14px] font-sora font-semibold mr-2">Login</span>
+            <span className="text-[14px] font-sora font-semibold mr-2">{t('login.buttons.login')}</span>
           <img src={ARROW_RIGHT_ICON} className="pointer-events-none w-[12px]"/> 
         </div>
         </button>

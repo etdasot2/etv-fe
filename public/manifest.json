@@ -1,7 +1,7 @@
 {
     "name": "Eternova Films",
     "short_name": "Eternova Films",
-    "description": "Watching movies and earning money",
+    "description": "Start earning income by watching movies and listening to music",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",

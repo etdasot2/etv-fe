@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
+import TaskResetTime from "./TaskResetTime"
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -82,9 +83,9 @@ export default function VipMissionArea({
   }, [isOpen])
 
   return (
-    <>
+      <>
       {/* {isOpen && <div className="fixed inset-0 bg-black/20 z-40" onClick={() => setIsOpen(false)} />} */}
-
+      <TaskResetTime /> {/* count down */}
       <div className={`w-full max-w-[435px] px-4 flex items-center pt-1 pb-3  top-0 z-50 transition-all  `}>
         <div className={cn("w-full flex items-center relative mt-2 vip-mission-dropdown")}>
           <div className="w-full relative bg-[#1c1c1c] rounded-[8px]">

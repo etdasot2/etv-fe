@@ -11,7 +11,7 @@ export default function Logout() {
 
   const handleLogOut = () => {
     removeToken();
-    router.push('/login')
+    router.push('/user/login')
   }
   return (
    

@@ -332,8 +332,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, onSubscribe, isSubsc
 
                         <div className="flex items-start justify-between mt-[20px]">
                             <div className="flex flex-col">
-                                <p className="font-sora text-white/70  text-[12px] mt-1 ">Type: {video.category}</p>
-                                <p className="font-sora text-white/70  text-[12px] mt-1 ">Director: {video.director}</p>
+                                <p className="font-sora text-white/70  text-[12px] mt-1 ">{t('revenue.score.type')}: {t(`revenue.score.categories.${video.category}`)}</p>
+                                <p className="font-sora text-white/70  text-[12px] mt-1 ">{t('revenue.score.director')}: {video.director}</p>
 
                             </div>
 
@@ -358,7 +358,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, onSubscribe, isSubsc
 
                         </div>
                         <div className="mt-5">
-                            <span className="font-sora text-white font-semibold  text-[14px] ">Introduction:</span>
+                            <span className="font-sora text-white font-semibold  text-[14px] ">{t('revenue.score.introduction')}:</span>
                             <p className="font-sora text-white/70  text-[12px] mt-1 ">{video.description}</p>
 
                         </div>
