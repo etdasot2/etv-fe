@@ -118,17 +118,16 @@ export default function ProfileDetails() {
       />
     </div>
   </div>
-  <Link href="/profile/details" className="flex items-center cursor-default">
-  {profileData?.user?.vipLevel !== undefined && (
+  {/* <Link href="/profile/details" className="flex items-center cursor-default"> */}
+  {/* {profileData?.user?.vipLevel !== undefined && (
       <div className="flex flex-col items-center justify-center">
         {profileData?.user?.vipLevel ? (
           <img src={`/vip-icons/music/vip${profileData?.user?.vipLevel}.png`} className="w-[45px] h-[45px]" />
         ) : (
           <img src={`/vip-icons/vip0.png`} className="w-[36px] h-[36px] opacity-[1]" />
         )}
-        {/* <span className="font-semibold text-[14px] font-sora mt-0 uppercase">{`vip${profileData?.user?.vipLevel}`}</span> */}
       </div>
-    )}
+    )} */}
 
     {profileData?.user?.vipLevel !== undefined && (
       <div className="flex flex-col items-center justify-center">
@@ -141,7 +140,7 @@ export default function ProfileDetails() {
       </div>
     )}
     <ChevronRight className="w-5 h-5 ml-1" />
-  </Link>
+  {/* </Link> */}
 
 </div>
  
