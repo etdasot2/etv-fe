@@ -1,7 +1,7 @@
 {
     "name": "Eternova Films",
     "short_name": "Eternova Films",
-    "description": "Subscribe to earn.",
+    "description": "Watching movies and earning money",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
