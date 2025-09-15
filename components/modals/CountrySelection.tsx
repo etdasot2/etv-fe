@@ -155,38 +155,37 @@ const CountrySelectorModal: React.FC<CountrySelectorModalProps> = ({ isOpen, onC
           onClick={onClose}
         >
           <motion.div
-            className="bg-[#1c1c1c] rounded-t-xl w-full max-w-md"
+            className="bg-[#191919] rounded-t-xl w-full max-w-md"
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex justify-between items-center p-6 pt-4 pb-4 border-b border-white/5">
+            <div className="flex justify-between items-center p-6 pt-2 pb-2 bg-[#252525] rounded-t-xl border-b border-white/5">
               <h2 className="font-semibold font-sora text-[16px]">{t("areaCode.label")}</h2>
               <button onClick={onClose}>
-                <X className="w-5 h-5 text-white   transition-colors duration-300" />
+                <X className="w-5 h-5 text-[#eebc7a]   transition-colors duration-300" />
               </button>
             </div>
-            <div className="p-5 h-[400px]">
-              <div className="relative mb-4 flex items-center">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
+            <div className="p-3 h-[400px] ">
+              <div className="relative mb-4 flex items-center ">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
                 <input
                   type="text"
                   placeholder="Area Code Search"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-[#1f1f1f] rounded-lg pl-[35px] pr-3 py-2 text-white text-[14px] border border-[#303030] focus:outline-none"
+                  className="w-full bg-[#1f1f1f] rounded-lg pl-[35px] pr-3 py-1.5 text-white font-sora text-[12px] border border-[#303030] focus:outline-none"
                 />
               </div>
               <div ref={containerRef} className="max-h-96 overflow-y-auto">
                 {filteredCountries.map((country) => (
                   <button
                     key={country.code}
-                    className="w-full text-left p-2 flex items-center   rounded transition-colors duration-300"
+                    className="w-full text-left p-2 flex items-center font-sora text-[14px]   rounded transition-colors duration-300"
                     onClick={() => onSelectCountry(country)}
                   >
-                    <span className="mr-2">{country.flag}</span>
                     <span className="text-white">{country.name}</span>
                     <span className="ml-auto text-gray-400">{country.dialCode}</span>
                   </button>

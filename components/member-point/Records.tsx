@@ -201,13 +201,13 @@ const MemberPointRecords: React.FC = () => {
 
         {!loading && filteredTransactions.length === 0 && (
           <div className="text-center text-white py-4">
-            {t('wallet.noResults')}
+            No results found
           </div>
         )}
 
         {!hasMore && filteredTransactions.length > 0 && (
           <div className="text-center text-[#bdbdbd] py-4 text-sm">
-            {t('wallet.noMoreRecords')}
+            No more records
           </div>
         )}
  

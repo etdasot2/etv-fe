@@ -92,7 +92,7 @@ export default function BottomBar({ activeRoute, noRoundedTop, isReels }: Bottom
                 alt={item.label}
               />
               <span
-                className={`text-[10px] mt-1 font-sora ${isActive ? 'text-[#eebc7a]' : 'text-[#fff6]'}`}
+                className={`text-[10px] mt-1 leading-[1] text-center font-sora ${isActive ? 'text-[#eebc7a]' : 'text-[#fff6]'}`}
               >
                 {item.label}
               </span>

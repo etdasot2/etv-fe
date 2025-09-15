@@ -30,7 +30,7 @@ const RegistrationPage: React.FC = () => {
             <img src={HOME_ICON_MAIN} className="w-[18px] h-[18px] " />
           </Link>
 
-          <Link href={SUPPORT_CHAT_URL} className="cursor-default bg-[#ffffff24] p-[5px] rounded-full">
+          <Link href="/my/download" className="cursor-default bg-[#ffffff24] p-[5px] rounded-full">
             <img src={APP_DOWNLOAD_ICON} className="w-[18px] h-[18px] " />
           </Link>
           <Link href={SUPPORT_CHAT_URL} className="cursor-default bg-[#ffffff24] p-[5px] rounded-full">

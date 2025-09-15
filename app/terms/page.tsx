@@ -7,7 +7,7 @@ const TermsPage: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="bg-[#121212] min-h-screen text-white"
+    <div className="bg-[#151515] min-h-screen text-white"
     >
 
       <BackTitle
@@ -15,86 +15,81 @@ const TermsPage: React.FC = () => {
         back={true}
       />
 
-      <p className="whitespace-pre-line font-sora leading-4 text-[14px] font-medium text-white p-4 mt-5">
-        {` 
-Privacy Policy
+<p className="whitespace-pre-line font-sora leading-4 text-[14px] font-medium text-white p-4 mt-5">
+{`
+Privacy Policy  
+Effective Date: September 15, 2025  
 
-Effective Date: December 29, 2024
+1. Introduction  
+Eternova Films Ltd. ("Eternova Films," "we," "us," or "our") is committed to safeguarding your privacy and personal information. This Privacy Policy describes in detail the types of data we collect, how we use it, how we protect it, and your rights regarding your data when you use our websites, mobile apps, and other related services (collectively, the "Services"). By using our Services, you agree to the practices set out in this policy.  
 
-1. Introduction
+2. Information We Collect  
 
-Eternova Films UK ("Eternova Films," "we," "us," or "our") values your privacy. This policy explains how we collect, use, share, and protect your information when you use our platform and services (the "Services").
+Information You Provide:  
+- Contact details such as your name, email address, and phone number.  
+- Login credentials including username and password.  
+- Payment information, billing details, and transaction history.  
+- Account settings, communication preferences, and profile details.  
+- Content you upload, share, or create on our platform.  
 
-2. Information We Collect
+Information We Collect Automatically:  
+- Technical information such as IP address, device identifiers, browser type, and operating system.  
+- Usage data including log-in times, features accessed, videos watched, music played, and general interaction patterns.  
+- Location information if you allow access through your device.  
+- Cookies, pixels, and tracking technologies used to improve functionality and measure performance.  
 
-Information You Provide:
-Your name, email, phone number.
-Username and password.
-Payment details and transaction history.
-Your account settings and preferences.
-Any content you create or share on our platform.
-Information We Collect Automatically:
-Your IP address, device type, and operating system.
-How you use our Services (e.g., when you log in, what pages you visit).
-Your location (if you allow it).
-Information From Other Sources:
-We may get information from partners who help us verify your identity or provide other services.
-3. How We Use Your Information
+Information From Other Sources:  
+- Verification data, analytics, or partner-provided information that helps us ensure your identity and deliver services securely.  
 
-We use your information to:
+3. How We Use Your Information  
+Your information is used for legitimate business purposes, including:  
+- Managing and verifying your account.  
+- Processing payments, subscriptions, and withdrawals securely.  
+- Providing customer support and responding to your requests.  
+- Protecting against fraud, abuse, or unauthorized activity.  
+- Enhancing the functionality and personalization of our Services.  
+- Communicating updates, promotions, and service notices (with your consent where required).  
+- Complying with applicable laws and regulatory requirements.  
 
-Manage your account and verify your identity.
-Process your payments and transactions.
-Keep our platform secure and prevent fraud.
-Provide customer support.
-Improve our Services and personalize your experience.
-Comply with legal requirements.
-4. How We Share Your Information
+4. How We Share Your Information  
+We do not sell your information. However, we may share it in limited circumstances:  
+- With service providers (payment processors, hosting partners, analytics providers) who help us operate efficiently.  
+- With financial institutions or payment networks to process authorized transactions.  
+- With law enforcement or government authorities where legally required.  
+- With affiliates or trusted partners within Eternova Films Ltd. group structures.  
+- In the case of a business restructuring, merger, or acquisition.  
 
-We may share your information with:
+5. Data Retention and Security  
+We retain your personal data only for as long as it is necessary for the purposes outlined above or as legally required.  
+We employ strict organizational, technical, and administrative measures to safeguard data from unauthorized access, alteration, disclosure, or destruction. Despite these measures, no system is entirely foolproof, and absolute security cannot be guaranteed.  
 
-Companies that help us provide our Services (e.g., payment processors).
-Financial institutions for transaction processing.
-Law enforcement, if required by law.
-Our affiliated companies.
-In the event of a bussiness transfer, such as a merger, or acqusition.
-5. Data Security
+6. International Data Transfers  
+Your data may be transferred to and stored in countries outside your country of residence. Where international transfers occur, we implement legal safeguards such as contractual clauses and security protocols to ensure your information remains protected.  
 
-We take steps to protect your information from unauthorized access, loss, or misuse. We keep your information only as long as necessary and delete or anonymize it when it's no longer needed.
+7. Your Rights  
+You have rights over your personal data, including the ability to:  
+- **Access**: Request details about the information we hold on you.  
+- **Correct**: Ask for inaccurate or incomplete data to be updated.  
+- **Delete**: Request that we erase your personal data where legally permissible.  
+- **Restrict**: Limit how your information is used in certain circumstances.  
+- **Portability**: Receive your information in a machine-readable format to transfer elsewhere.  
+- **Withdraw Consent**: Revoke permissions you previously gave, such as for marketing.  
 
-6. International Data Transfers
+To exercise these rights, email us at: **contact@eternovafilms.com**.  
 
-Your information may be transferred to and processed in other countries. We use legal safeguards to protect your information during these transfers.
+8. Children's Privacy  
+Our Services are not intended for children under 13 years old. We do not knowingly collect personal data from children. If such information is discovered, we will delete it immediately.  
 
-7. Your Rights
+9. Updates to This Privacy Policy  
+We may update this Privacy Policy periodically to reflect legal, technical, or business changes. When updates are significant, we will notify you directly or provide clear notice within our Services. Your continued use of the Services after updates signifies your acceptance of the revised terms.  
 
-You have the right to:
+10. Contact Us  
+If you have questions, concerns, or complaints about this Privacy Policy or how your information is handled, please contact us at:  
 
-Access your information.
-Correct any errors.
-Delete your information.
-Limit how we use your information.
-Receive your information in a portable format.
-Withdraw your consent.
-To exercise these rights, please contact us at contact@mail.Eternova Films.vip.
-
-8. Children's Privacy
-
-Our Services are not for children under 13. We do not knowingly collect their information. If we learn we have, we will delete it.
-
-9. Changes to This Policy
-
-We may update this policy. We will notify you of significant changes. By continuing to use our Services, you agree to the updated policy.
-
-10. Contact Us
-
-If you have any questions, please contact us at:
-
-Email: contact@mail.Eternova Films.vip
-Eternova Films Ltd.
-
- `}
-      </p>
+Email: **contact@eternovafilms.com**  
+Eternova Films Ltd.  
+`}
+</p>
 
     </div>
   )

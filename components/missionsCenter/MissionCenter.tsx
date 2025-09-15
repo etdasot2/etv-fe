@@ -180,7 +180,7 @@ const MissionCenterMain = () => {
         <div className="flex rounded-full overflow-hidden  bg-[#1c1c1c]">
           <button
             type="button"
-            className={`flex-1 py-2.5 px-3 text-center font-sora text-[14px] font-medium cursor-pointer  rounded-full break-words  `}
+            className={`flex-1 py-2.5 px-3 text-center font-sora text-[14px] font-medium cursor-pointer  leading-[1] rounded-full break-words  `}
             style={{
               background: activeTab === 'direct' ? 'linear-gradient(to right, #b37106, #c18610, #7c4804)' : '#1c1c1c'
             }}
@@ -190,7 +190,7 @@ const MissionCenterMain = () => {
           </button>
           <button
             type="button"
-            className={`flex-1 py-2.5 px-3 text-center font-sora text-[14px] font-medium cursor-pointer  rounded-full break-words `}
+            className={`flex-1 py-2.5 px-3 text-center font-sora text-[14px] font-medium cursor-pointer  leading-[1] rounded-full break-words `}
             style={{
               background: activeTab === 'team' ? 'linear-gradient(to right, #b37106, #c18610, #7c4804)' : '#1c1c1c'
             }}
@@ -200,7 +200,7 @@ const MissionCenterMain = () => {
           </button>
           <button
             type="button"
-            className={`flex-1 py-2.5 px-3 text-center font-sora text-[14px] font-medium cursor-pointer  rounded-full break-words  `}
+            className={`flex-1 py-2.5 px-3 text-center font-sora text-[14px] font-medium cursor-pointer  leading-[1] rounded-full break-words  `}
             style={{
               background: activeTab === 'growth' ? 'linear-gradient(to right, #b37106, #c18610, #7c4804)' : '#1c1c1c'
             }}

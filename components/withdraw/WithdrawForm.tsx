@@ -27,11 +27,11 @@ const calculateFees = (amount: number) => {
   const handlingFee = 1; // 1 USDT handling fee
   let taxRate = 0;
 
-  if (amount >= 10 && amount <= 90) {
-    taxRate = 0.09; // 8%
-  } else if (amount >= 100 && amount <= 490) {
-    taxRate = 0.04; // 5%
-  } else if (amount >= 500 && amount <= 990) {
+  if (amount >= 15 && amount <= 99) {
+    taxRate = 0.08; // 8%
+  } else if (amount >= 100 && amount <= 499) {
+    taxRate = 0.05; // 5%
+  } else if (amount >= 500 && amount <= 999) {
     taxRate = 0.01; // 1%
   }
   // Above 1000 USDT is tax free (taxRate remains 0)
@@ -70,7 +70,7 @@ export default function WithdrawForm() {
       .number()
       .required(t('withdraw.validation.amount.required'))
       .typeError(t('withdraw.validation.amount.invalid'))
-      .min(10, t('withdraw.validation.amount.min'))
+      .min(15, t('withdraw.validation.amount.min'))
       .max(50000, t('withdraw.validation.amount.max'))
   });
 
@@ -481,7 +481,7 @@ export default function WithdrawForm() {
               </button>
             </div>
             <div className="bg-[#1c1c1c] border-l border-r border-b border-[#242424] rounded-b-[10px] pl-3 pt-2 pb-3 pr-3">
-              <div className="text-[12px] font-sora text-white flex font-medium items-center">{t('withdraw.withdrawalAmount')}: <div className="text-[#eebc7a] ml-1">10 USDT - 50000 USDT</div></div>
+              <div className="text-[12px] font-sora text-white flex font-medium items-center">{t('withdraw.withdrawalAmount')}: <div className="text-[#eebc7a] ml-1">15 USDT - 50000 USDT</div></div>
             </div>
           </div>
 
@@ -532,7 +532,7 @@ export default function WithdrawForm() {
             <li>{t('withdraw.withdrawalInstruction7')}</li>
             <li>{t('withdraw.withdrawalInstruction2')}</li>
             <li>{t('withdraw.withdrawalInstruction3')}</li>
-            <li>{t('withdraw.withdrawalInstruction4')}:<br />10-90 USDT: 9% tax<br />100-490 USDT: 4% tax<br />500-990 USDT: 1% tax<br />{t('withdraw.withdrawalInstruction5')}<br />{t('withdraw.withdrawalInstruction6')}</li>
+            <li>{t('withdraw.withdrawalInstruction4')}:<br />15-99 USDT: 8% tax<br />100-499 USDT: 5% tax<br />500-999 USDT: 1% tax<br />{t('withdraw.withdrawalInstruction5')}<br />{t('withdraw.withdrawalInstruction6')}</li>
           </ol>
         </div>
 

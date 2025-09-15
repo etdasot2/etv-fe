@@ -10,17 +10,16 @@ interface Language {
     name: string
 }
 
-const languages: Language[] = [
-    { code: 'es', name: 'Español' },
-    { code: 'it', name: 'Italiano' },
-    { code: 'ar', name: 'عربي' },
-    { code: 'ru', name: 'Русский' },
-    { code: 'tr', name: 'Türkiye' },
-    { code: 'fa', name: 'فارسی' },
-    { code: 'bg', name: 'български' },
-    { code: 'uz', name: 'ozbek' },
-    { code: 'mk', name: 'македонски' },
-    { code: 'en', name: 'English' },
+const languages: Language[] = [{ code: 'en', name: 'English' },
+    { code: 'ar', name: 'العربية' },        // Arabic
+    { code: 'hi', name: 'हिन्दी' },          // Hindi (India)
+    { code: 'fr', name: 'Français' },       // French
+    { code: 'zh', name: '中文' },            // Chinese
+    { code: 'tr', name: 'Türkçe' },         // Turkish
+    { code: 'bg', name: 'Български' },      // Bulgarian
+    { code: 'it', name: 'Italiano' },       // Italian
+    { code: 'ja', name: '日本語' },          // Japanese
+    { code: 'ru', name: 'Русский' }         // Russian
 ]
 
 const SwitchLanguage: React.FC = () => {
@@ -49,17 +48,16 @@ const SwitchLanguage: React.FC = () => {
                 {languages.map((language) => (
                     <button
                         key={language.code}
-                        className={`w-full text-left p-4 flex justify-between items-center rounded-[10px] ${
-                            i18n.language === language.code ? 'bg-[#9f9f9f0d]' : ''
-                        }`}
+                        className={`w-full text-left p-4 flex justify-between items-center rounded-[10px] ${i18n.language === language.code ? 'bg-[#9f9f9f0d]' : ''
+                            }`}
                         onClick={() => handleLanguageChange(language.code, language.name)}
                     >
                         <span className="font-sora text-[14px] font-medium">
                             {language.name}
                         </span>
                         {i18n.language === language.code && (
-                            <img 
-                                src="/assets/check-point-pro.png" 
+                            <img
+                                src="/assets/check-point-pro.png"
                                 className="w-[21px] h-[21px]"
                                 alt="selected language indicator"
                             />

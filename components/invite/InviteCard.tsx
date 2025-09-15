@@ -24,7 +24,7 @@ export default function InviteCard() {
             try {
                 const data = await getProfileDetails(); // Call the API to get profile details
                 setProfileData(data.user);
-                setSiteLink(`${SITE_URL}/reg?inviteCode=${data.user.invitationCode}`)
+                setSiteLink(`${SITE_URL}/user/reg?inviteCode=${data.user.invitationCode}`)
             } catch (error) {
                 console.error('Error fetching profile details:', error);
             } finally {
