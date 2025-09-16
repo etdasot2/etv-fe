@@ -80,9 +80,9 @@ export default function InviteCard() {
                     <div className="w-full flex  h-auto bg-[#302200db] items-center rounded-[13px] border border-[#ffedaa57] p-3 pl-4 pr-4 justify-between">
                         <div className="flex flex-col items-start justify-start text-left flex-1">
                             <span className="font-sora text-[16.5px] font-medium text-[#eebc7a]">{t('invite.invitationLink')}</span>
-                            <p className="text-[14px] font-sora text-white font-medium mt-2"> {siteLink}</p>
+                            <p className="text-[14px] font-sora text-white font-medium mt-2 break-words"> {siteLink}</p>
                         </div>
-                        <div className="w-[26px] h-[26px] flex"
+                        <div className="w-[26px] h-[26px] flex flex-shrink-0"
                             onClick={() => { handleCopyUrl(siteLink) }}
                         >
                             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAA0CAMAAADypuvZAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAAFdQTFRFAAAA8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz/sxh/cth/tBg/tBg/stf/cxi/s9f/tBg/sxh/s9h/cth/s9e/cth/tBg/tFZ/tBg8/Pz8/PzcbVagQAAAB10Uk5TADlZZlNATUYNGhMgv+//gK+/3xB/z7/fryC/Uj9h5Ix1AAABP0lEQVR4nOXW32+CMBAH8Lu2Ij/ULNlMfNj//6/NLNnDtmQKDk4oINAetPVhMdk9NC3pR8K3EA+hKUSsx1LPpR75OeJFb9cXonJ+42Su8gHFeAKfSqvzgALrPrQSeA4ScXVBReufIJQUhLILx78kPDoKFLo4lLWvYrfh0wtlYnKRUQx6qoBUvyg5xaAdKPzoFy8Fo5xBcModuaXsc2KSa9TXEmKT2+fLiE1uI5YRm5wbxe/DqnsaG8Gkpqh7GgNZ52Sgdvv/QEuR88hxTu32Z3UKR1uE9BiKdkCbt+A7JXJs/JBZrnePRdY5bZGi26dh5TaD6p9W8W31beQ2g4zP3chtBkG2qkbEyG0OedWj/6ndhQRGfi1OX2l+wLr7CGw+aP+HvVF7S+HX6iQ0at3Wv83o0STKYkCvR/JCRM0+uAJn7o6rKCZqYwAAAABJRU5ErkJggg=="
@@ -95,7 +95,7 @@ export default function InviteCard() {
                             <span className="font-sora text-[16.5px] font-medium text-[#eebc7a]">{t('invite.invitationCode')}</span>
                             <p className="text-[14px] font-sora text-white font-medium mt-2"> {profileData?.invitationCode}</p>
                         </div>
-                        <div className="w-[26px] h-[26px] flex"
+                        <div className="w-[26px] h-[26px] flex flex-shrink-0"
                             onClick={() => {
                                 handleCopyUrl(profileData?.invitationCode)
                             }}
