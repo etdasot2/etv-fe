@@ -44,6 +44,22 @@ export function CustomerPicker({
     }
   }, [isOpen, defaultValue, options, scrollToIndex])
 
+  // Disable/enable background scrolling when picker opens/closes
+  React.useEffect(() => {
+    if (isOpen) {
+      // Disable background scrolling
+      document.body.style.overflow = 'hidden'
+    } else {
+      // Re-enable background scrolling
+      document.body.style.overflow = 'unset'
+    }
+
+    // Cleanup function to ensure scrolling is re-enabled if component unmounts
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
+
   const handleScroll = React.useCallback(() => {
     if (!containerRef.current) return
     const container = containerRef.current
@@ -96,14 +112,14 @@ export function CustomerPicker({
                 onClick={onClose}
                 className="absolute font-sora text-[12px] left-4 top-1/2 -translate-y-1/2 text-[#969799]"
               >
-                Cancel
+                {t('global.cancel')}
               </button>
               <h2 className="text-center text-white text-[14px] font-sora font-medium">{title}</h2>
               <button
                 onClick={handleConfirm}
                 className="absolute  font-sora text-[12px]  font-medium right-4 top-1/2 -translate-y-1/2 text-[#eebc7a]"
               >
-                Confirm
+                {t('global.confirm')}
               </button>
             </div>
 
@@ -115,14 +131,22 @@ export function CustomerPicker({
               {/* Scrollable container */}
               <div
                 ref={containerRef}
-                className="absolute inset-0 overflow-auto scroll-smooth"
+                className="absolute inset-0 overflow-auto scroll-smooth scrollbar-hide"
                 onScroll={handleScroll}
                 style={{
                   scrollSnapType: "y mandatory",
                   paddingTop: "112px", // 2 items height
                   paddingBottom: "112px", // 2 items height
+                  msOverflowStyle: "none" /* IE and Edge */,
+                  scrollbarWidth: "none" /* Firefox */,
                 }}
               >
+                {/* Add this CSS to hide WebKit scrollbars */}
+                <style jsx>{`
+                  div::-webkit-scrollbar {
+                    display: none;
+                  }
+                `}</style>
                 {options.map((option: any, index: number) => (
                   <div
                     key={option.key}

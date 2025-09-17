@@ -35,6 +35,8 @@ const resources = {
                 "success": "success",
                 "stayTuned": "Stay tuned",
                 "months": {
+                    "jan": "Jan",
+                    "feb": "Feb",
                     "mar": "Mar",
                     "apr": "Apr",
                     "may": "May",
@@ -49,7 +51,10 @@ const resources = {
                 "people": "People",
                 "views": "Views",
                 "dontRepeat": "Please do not repeat the request",
-                "sending": "Sending"
+                "sending": "Sending",
+                "cancel": "Cancel",
+                "confirm": "Confirm",
+                "selectCategory": "Select Category",
             },
             "common": {
                 "errorOccurred": "An error occurred"
@@ -475,7 +480,7 @@ const resources = {
             },
             "wallet": {
                 "title": "Recharge and Withdraw",
-                "noResults":"No results found",
+                "noResults": "No results found",
                 "totalAssets": "Total Assets",
                 "recharge": "Recharge",
                 "withdraw": "Withdraw",
@@ -1026,6 +1031,8 @@ const resources = {
                 "success": "نجاح",
                 "stayTuned": "ترقبوا",
                 "months": {
+                    "jan": "يناير",
+                    "feb": "فبراير",
                     "mar": "مارس",
                     "apr": "أبريل",
                     "may": "مايو",
@@ -1040,7 +1047,12 @@ const resources = {
                 "people": "أشخاص",
                 "views": "مشاهدات",
                 "dontRepeat": "يرجى عدم تكرار الطلب",
-                "sending": "جاري الإرسال"
+                "sending": "جاري الإرسال",
+
+                "cancel": "إلغاء",
+                "confirm": "تأكيد",
+                "selectCategory": "اختر فئة"
+
             },
             "common": {
                 "errorOccurred": "حدث خطأ"
@@ -2011,6 +2023,8 @@ const resources = {
                 "success": "सफलता",
                 "stayTuned": "बने रहें",
                 "months": {
+                    "jan": "जनवरी",
+                    "feb": "फ़रवरी",
                     "mar": "मार्च",
                     "apr": "अप्रैल",
                     "may": "मई",
@@ -2025,7 +2039,12 @@ const resources = {
                 "people": "लोग",
                 "views": "व्यूज़",
                 "dontRepeat": "कृपया अनुरोध को दोहराएं नहीं",
-                "sending": "भेजा जा रहा है"
+                "sending": "भेजा जा रहा है",
+
+                "cancel": "रद्द करें",
+                "confirm": "पुष्टि करें",
+                "selectCategory": "श्रेणी चुनें"
+
             },
             "common": {
                 "errorOccurred": "एक त्रुटि हुई"
@@ -2997,21 +3016,28 @@ const resources = {
                 "success": "succès",
                 "stayTuned": "Restez à l'écoute",
                 "months": {
-                    "mar": "Mars",
-                    "apr": "Avril",
-                    "may": "Mai",
-                    "jun": "Juin",
-                    "jul": "Juillet",
-                    "aug": "Août",
-                    "sep": "Sep",
-                    "oct": "Oct",
-                    "nov": "Nov",
-                    "dec": "Déc"
+                    "jan": "janv",
+                    "feb": "févr",
+                    "mar": "mars",
+                    "apr": "avr",
+                    "may": "mai",
+                    "jun": "juin",
+                    "jul": "juil",
+                    "aug": "août",
+                    "sep": "sept",
+                    "oct": "oct",
+                    "nov": "nov",
+                    "dec": "déc"
                 },
                 "people": "Personnes",
                 "views": "Vues",
                 "dontRepeat": "Veuillez ne pas répéter la demande",
-                "sending": "Envoi"
+                "sending": "Envoi",
+
+                "cancel": "Annuler",
+                "confirm": "Confirmer",
+                "selectCategory": "Sélectionner une catégorie"
+
             },
             "common": {
                 "errorOccurred": "Une erreur est survenue"
@@ -3984,21 +4010,28 @@ const resources = {
                 "success": "成功",
                 "stayTuned": "敬请期待",
                 "months": {
-                    "mar": "3月",
-                    "apr": "4月",
-                    "may": "5月",
-                    "jun": "6月",
-                    "jul": "7月",
-                    "aug": "8月",
-                    "sep": "9月",
-                    "oct": "10月",
-                    "nov": "11月",
-                    "dec": "12月"
+                    "jan": "一月",
+                    "feb": "二月",
+                    "mar": "三月",
+                    "apr": "四月",
+                    "may": "五月",
+                    "jun": "六月",
+                    "jul": "七月",
+                    "aug": "八月",
+                    "sep": "九月",
+                    "oct": "十月",
+                    "nov": "十一月",
+                    "dec": "十二月"
                 },
                 "people": "人",
                 "views": "观看次数",
                 "dontRepeat": "请不要重复请求",
-                "sending": "发送中"
+                "sending": "发送中",
+
+                "cancel": "取消",
+                "confirm": "确认",
+                "selectCategory": "选择类别"
+
             },
             "common": {
                 "errorOccurred": "发生错误"
@@ -4930,6 +4963,8 @@ const resources = {
                 "success": "Başarılı",
                 "stayTuned": "Takipte kalın",
                 "months": {
+                    "jan": "Oca",
+                    "feb": "Şub",
                     "mar": "Mar",
                     "apr": "Nis",
                     "may": "May",
@@ -4944,7 +4979,12 @@ const resources = {
                 "people": "Kişi",
                 "views": "Görüntüleme",
                 "dontRepeat": "Lütfen isteği tekrarlamayın",
-                "sending": "Gönderiliyor"
+                "sending": "Gönderiliyor",
+
+                "cancel": "İptal",
+                "confirm": "Onayla",
+                "selectCategory": "Kategori Seç"
+
             },
             "common": {
                 "errorOccurred": "Bir hata oluştu"
@@ -5915,7 +5955,9 @@ const resources = {
                 "success": "успех",
                 "stayTuned": "Очаквайте скоро",
                 "months": {
-                    "mar": "Март",
+                    "jan": "Яну",
+                    "feb": "Фев",
+                    "mar": "Мар",
                     "apr": "Апр",
                     "may": "Май",
                     "jun": "Юни",
@@ -5923,13 +5965,18 @@ const resources = {
                     "aug": "Авг",
                     "sep": "Сеп",
                     "oct": "Окт",
-                    "nov": "Нов",
+                    "nov": "Ное",
                     "dec": "Дек"
                 },
                 "people": "Хора",
                 "views": "Преглеждания",
                 "dontRepeat": "Моля, не повтаряйте заявката",
-                "sending": "Изпращане"
+                "sending": "Изпращане",
+
+                "cancel": "Отказ",
+                "confirm": "Потвърди",
+                "selectCategory": "Избери категория"
+
             },
             "common": {
                 "errorOccurred": "Възникна грешка"
@@ -6900,6 +6947,8 @@ const resources = {
                 "success": "Successo",
                 "stayTuned": "Resta sintonizzato",
                 "months": {
+                    "jan": "Gen",
+                    "feb": "Feb",
                     "mar": "Mar",
                     "apr": "Apr",
                     "may": "Mag",
@@ -6914,7 +6963,12 @@ const resources = {
                 "people": "Persone",
                 "views": "Visualizzazioni",
                 "dontRepeat": "Per favore, non ripetere la richiesta",
-                "sending": "Invio"
+                "sending": "Invio",
+
+                "cancel": "Annulla",
+                "confirm": "Conferma",
+                "selectCategory": "Seleziona categoria"
+
             },
             "common": {
                 "errorOccurred": "Si è verificato un errore"
@@ -7885,6 +7939,8 @@ const resources = {
                 "success": "成功",
                 "stayTuned": "乞うご期待",
                 "months": {
+                    "jan": "1月",
+                    "feb": "2月",
                     "mar": "3月",
                     "apr": "4月",
                     "may": "5月",
@@ -7899,7 +7955,13 @@ const resources = {
                 "people": "人",
                 "views": "再生回数",
                 "dontRepeat": "リクエストを繰り返さないでください",
-                "sending": "送信中"
+                "sending": "送信中",
+
+
+                "cancel": "キャンセル",
+                "confirm": "確認",
+                "selectCategory": "カテゴリーを選択"
+
             },
             "common": {
                 "errorOccurred": "エラーが発生しました"
@@ -8871,21 +8933,28 @@ const resources = {
                 "success": "успешно",
                 "stayTuned": "Оставайтесь на связи",
                 "months": {
-                    "mar": "Март",
+                    "jan": "Янв",
+                    "feb": "Фев",
+                    "mar": "Мар",
                     "apr": "Апр",
                     "may": "Май",
-                    "jun": "Июнь",
-                    "jul": "Июль",
+                    "jun": "Июн",
+                    "jul": "Июл",
                     "aug": "Авг",
                     "sep": "Сен",
                     "oct": "Окт",
-                    "nov": "Нояб",
+                    "nov": "Ноя",
                     "dec": "Дек"
                 },
                 "people": "Человек",
                 "views": "Просмотры",
                 "dontRepeat": "Пожалуйста, не повторяйте запрос",
-                "sending": "Отправка"
+                "sending": "Отправка",
+
+                "cancel": "Отмена",
+                "confirm": "Подтвердить",
+                "selectCategory": "Выбрать категорию"
+
             },
             "common": {
                 "errorOccurred": "Произошла ошибка"

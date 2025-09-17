@@ -224,6 +224,7 @@ const MemberPointRecords: React.FC = () => {
             setIsOpen(false)
           }}
           defaultValue={currentFilter}
+          title={t('global.selectCategory')}
         />
 
     </>

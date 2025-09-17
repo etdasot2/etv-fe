@@ -45,23 +45,27 @@ const { t } = useTranslation();
       <div className="p-4 pt-0 pb-0">
  
 
-      <div className="bg-[#20201f] rounded-lg mb-4  border border-[#503e2961]"
+      <div className="bg-[#20201f] rounded-[15px] mb-4  border border-[#503e2961]"
       
       >
         <div 
         style={{
           background:"linear-gradient(rgb(250 179 54 / 0%), rgb(186 140 0 / 1%))"
         }}
-        className="rounded-lg "
+        className="rounded-[15px] "
         >
 
         {[
+
+{ icon: Lock, text: t('profile.telegram'), link: "http://t.me/EternovaFilms2", img: '/assets/tt1la.png'  },
 
           // { icon: UserCheck, text: t('profile.instagramAccount'), link: "/profile/instagram/account", img: '/assets/icon.ig.logo.png' },
           { icon: UserCheck, text: t('profile.userKYC'), link: "/user/verified", img: '/assets/icon2.57fb2845 (2).png' },
           { icon: Lock, text: t('profile.loginPasswordTab'), link: "/user/loginPassword", img: '/assets/icon3.9c6d9163.png' },
           { icon: Lock, text: t('profile.transactionPasswordTab'), link: "/user/fundingPassword", img: '/assets/icon4.e6d4dbd2 (2).png' },
           { icon: Bell, text: t('profile.notification'), link: "/information/index", img: '/assets/icon.bell.png' },
+{ icon: Lock, text: t('profile.scoreRecord'), link: "/user/record", img: '/assets/scorinlf.ic.png'  },
+
           { icon: Globe, text: t('profile.switchLanguage'), link: "/my/lang", img: '/assets/icon.lng.png' },
           { icon: HeadphonesIcon, text: t('profile.contactCustomerService'), link:SUPPORT_CHAT_URL, target:'_blank', img: '/assets/icon.cs.png' },
           { icon: Download, text: t('profile.appDownload'), link: "/my/download", img: '/assets/icon.app.download (2).png' },
@@ -72,6 +76,7 @@ const { t } = useTranslation();
               router.push(`${item.link}`)
             }}
             
+            // key={index} className="flex items-center justify-between p-4 pb-3   last:border-b-0  "
             key={index} className="flex items-center justify-between p-4 pb-3 border-b border-[#38383861] last:border-b-0  "
             
             >

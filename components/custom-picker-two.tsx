@@ -35,10 +35,6 @@ export function CustomerPickerTwo({
     return hasTwoColumnStructure ? options[0].option1 : []
   }, [hasTwoColumnStructure, options])
 
-  const option2Array = React.useMemo(() => {
-    return hasTwoColumnStructure ? options[0].option2 : []
-  }, [hasTwoColumnStructure, options])
-
   // Parse default value for two-column structure (format: "option1Key_option2Key")
   const [defaultOption1, defaultOption2] = React.useMemo(() => {
     if (!defaultValue || !hasTwoColumnStructure) return [null, null]
@@ -46,7 +42,7 @@ export function CustomerPickerTwo({
     return [parts[0] || null, parts[1] || null]
   }, [defaultValue, hasTwoColumnStructure])
 
-  // Initialize selected indices
+  // Calculate initial indices based on default value
   const initialOption1Index = React.useMemo(() => {
     if (hasTwoColumnStructure && defaultOption1) {
       const index = option1Array.findIndex((opt: any) => opt.key === defaultOption1)
@@ -55,6 +51,29 @@ export function CustomerPickerTwo({
     return 0
   }, [hasTwoColumnStructure, defaultOption1, option1Array])
 
+  // State for selected indices
+  const [selectedOption1Index, setSelectedOption1Index] = React.useState(initialOption1Index)
+  const [selectedOption2Index, setSelectedOption2Index] = React.useState(0)
+  const [selectedSingleIndex, setSelectedSingleIndex] = React.useState(0)
+  const [hasUserInteracted, setHasUserInteracted] = React.useState(false)
+
+  // Get the current month options based on selected year
+  const option2Array = React.useMemo(() => {
+    if (!hasTwoColumnStructure) return []
+
+    const option2 = options[0].option2
+    // Check if option2 is an object (year-based) or array (static)
+    if (typeof option2 === "object" && !Array.isArray(option2)) {
+      // Get the selected year from option1, default to first year if none selected
+      const selectedYear = option1Array[selectedOption1Index]?.key || option1Array[0]?.key
+      return option2[selectedYear] || []
+    }
+
+    // Fallback to array structure for backward compatibility
+    return Array.isArray(option2) ? option2 : []
+  }, [hasTwoColumnStructure, options, selectedOption1Index, option1Array])
+
+  // Calculate initial option2 index based on default value
   const initialOption2Index = React.useMemo(() => {
     if (hasTwoColumnStructure && defaultOption2) {
       const index = option2Array.findIndex((opt: any) => opt.key === defaultOption2)
@@ -63,7 +82,7 @@ export function CustomerPickerTwo({
     return 0
   }, [hasTwoColumnStructure, defaultOption2, option2Array])
 
-  // For single-column layout
+  // Calculate initial single index based on default value
   const initialSingleIndex = React.useMemo(() => {
     if (!hasTwoColumnStructure && defaultValue) {
       const index = options.findIndex((opt: any) => opt.key === defaultValue)
@@ -71,11 +90,6 @@ export function CustomerPickerTwo({
     }
     return 0
   }, [hasTwoColumnStructure, defaultValue, options])
-
-  // State for selected indices
-  const [selectedOption1Index, setSelectedOption1Index] = React.useState(initialOption1Index)
-  const [selectedOption2Index, setSelectedOption2Index] = React.useState(initialOption2Index)
-  const [selectedSingleIndex, setSelectedSingleIndex] = React.useState(initialSingleIndex)
 
   // Scroll to index functions
   const scrollToIndex1 = React.useCallback((index: number) => {
@@ -86,16 +100,21 @@ export function CustomerPickerTwo({
       behavior: "smooth",
     })
     setSelectedOption1Index(index)
+    setHasUserInteracted(true)
   }, [])
 
   const scrollToIndex2 = React.useCallback((index: number) => {
-    if (!containerRef2.current) return
+    if (!containerRef2.current) {
+      return
+    }
     const itemHeight = 40
+    const scrollTop = index * itemHeight
     containerRef2.current.scrollTo({
-      top: index * itemHeight,
+      top: scrollTop,
       behavior: "smooth",
     })
     setSelectedOption2Index(index)
+    setHasUserInteracted(true)
   }, [])
 
   const scrollToSingleIndex = React.useCallback((index: number) => {
@@ -106,27 +125,140 @@ export function CustomerPickerTwo({
       behavior: "smooth",
     })
     setSelectedSingleIndex(index)
+    setHasUserInteracted(true)
   }, [])
+
+  // Track previous year to detect actual changes
+  const prevYearIndex = React.useRef(-1) // Initialize to -1 to avoid interference
+  const hasInitialized = React.useRef(false)
+
+  // Reset month selection when year changes (but only after user has manually interacted)
+  React.useEffect(() => {
+    // Only reset if:
+    // 1. It's a two-column structure
+    // 2. Component is open
+    // 3. User has manually interacted (not during initialization)
+    // 4. Component has finished initializing
+    // 5. Year actually changed
+    // 6. It's been at least 100ms since initialization (to avoid initialization conflicts)
+    const shouldReset =
+      hasTwoColumnStructure &&
+      isOpen &&
+      hasUserInteracted &&
+      hasInitialized.current &&
+      prevYearIndex.current !== selectedOption1Index &&
+      prevYearIndex.current !== -1 // Don't reset on first run
+
+    if (shouldReset) {
+      // Reset month selection to first month when year changes
+      setSelectedOption2Index(0)
+      // Use setTimeout to ensure the scroll happens after the state update
+      setTimeout(() => {
+        scrollToIndex2(0)
+      }, 0)
+    }
+
+    // Always update the previous year index
+    prevYearIndex.current = selectedOption1Index
+  }, [selectedOption1Index, hasTwoColumnStructure, isOpen, hasUserInteracted, scrollToIndex2])
+
+  // Reset user interaction flag when component closes
+  React.useEffect(() => {
+    if (!isOpen) {
+      setHasUserInteracted(false)
+    }
+  }, [isOpen])
+
+  // Disable/enable background scrolling when picker opens/closes
+  React.useEffect(() => {
+    if (isOpen) {
+      // Disable background scrolling
+      document.body.style.overflow = 'hidden'
+    } else {
+      // Re-enable background scrolling
+      document.body.style.overflow = 'unset'
+    }
+
+    // Cleanup function to ensure scrolling is re-enabled if component unmounts
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
 
   // Initialize scroll positions when component opens
   React.useEffect(() => {
-    if (!isOpen) return
+    if (!isOpen) {
+      hasInitialized.current = false
+      return
+    }
+
+    if (hasInitialized.current) return
 
     if (hasTwoColumnStructure) {
-      scrollToIndex1(initialOption1Index)
-      scrollToIndex2(initialOption2Index)
+      // Calculate initial values based on default value internally
+      let option1Index = 0
+      let option2Index = 0
+
+      if (defaultValue) {
+        const [defaultOption1, defaultOption2] = defaultValue.split("_")
+
+        if (defaultOption1) {
+          const index = option1Array.findIndex((opt: any) => opt.key === defaultOption1)
+          if (index >= 0) option1Index = index
+        }
+
+        if (defaultOption2) {
+          const option2 = options[0].option2
+          let correctOption2Array = []
+
+          if (typeof option2 === "object" && !Array.isArray(option2)) {
+            // Get the selected year from the calculated option1Index (not from current state)
+            const selectedYear = option1Array[option1Index]?.key || option1Array[0]?.key
+            correctOption2Array = option2[selectedYear] || []
+          } else {
+            // Fallback to array structure for backward compatibility
+            correctOption2Array = Array.isArray(option2) ? option2 : []
+          }
+
+          const index = correctOption2Array.findIndex((opt: any) => opt.key === defaultOption2)
+          if (index >= 0) option2Index = index
+        }
+      }
+
+      // Set initial values
+      setSelectedOption1Index(option1Index)
+      setSelectedOption2Index(option2Index)
+      prevYearIndex.current = option1Index
+
+      setTimeout(() => {
+        scrollToIndex1(option1Index)
+        // Add a small delay for the second scroll to ensure the first one completes
+        setTimeout(() => {
+          scrollToIndex2(option2Index)
+        }, 100)
+      }, 150)
     } else {
-      scrollToSingleIndex(initialSingleIndex)
+      // Single column logic
+      let singleIndex = 0
+      if (defaultValue) {
+        const index = options.findIndex((opt: any) => opt.key === defaultValue)
+        if (index >= 0) singleIndex = index
+      }
+
+      setSelectedSingleIndex(singleIndex)
+      scrollToSingleIndex(singleIndex)
     }
+
+    hasInitialized.current = true
   }, [
     isOpen,
     hasTwoColumnStructure,
-    initialOption1Index,
-    initialOption2Index,
-    initialSingleIndex,
     scrollToIndex1,
     scrollToIndex2,
     scrollToSingleIndex,
+    defaultValue,
+    option1Array,
+    options,
   ])
 
   // Handle scroll events
@@ -221,14 +353,15 @@ export function CustomerPickerTwo({
                 onClick={onClose}
                 className="absolute font-sora text-[12px] left-4 top-1/2 -translate-y-1/2 text-[#969799]"
               >
-                Cancel
+
+                {t('global.cancel')}
               </button>
               <h2 className="text-center text-white text-[14px] font-sora font-medium">{title}</h2>
               <button
                 onClick={handleConfirm}
                 className="absolute font-sora text-[12px] font-medium right-4 top-1/2 -translate-y-1/2 text-[#eebc7a]"
               >
-                Confirm
+                {t('global.confirm')}
               </button>
             </div>
 
@@ -386,4 +519,3 @@ export function CustomerPickerTwo({
     </AnimatePresence>
   )
 }
-

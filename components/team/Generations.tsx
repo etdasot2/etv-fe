@@ -41,17 +41,17 @@ export default function TeamGenerations() {
         <>
 
             <div className="p-3.5 bg-[#1c1c1c] rounded-[10px] mt-5">
-                <div className="text-white pb-[0.32rem] text-[0.28rem] flex items-center justify-between">
+                <div className="text-white pb-[0.32rem] text-[0.28rem] flex items-center justify-between gap-3">
                     <div className="flex items-center">
                         <img src="/assets/icon1.d860b553.png" className="w-[32px] h-[32px] mr-3" />
-                        <div className="text-[#ffffff99] text-[12px] font-medium leading-[0.44rem] pt-1.5 font-sora">
+                        <div className="text-[#ffffff99] text-[12px] font-medium leading-[1.2] pt-1.5 font-sora">
                             {t('team.totalTeamMembers')}
                             <div className="text-base text-white mt-[3px]">{data.totalMembers}</div>
                         </div>
                     </div>
                     <div className="flex items-center">
                         <img src="/assets/icon2.f4ab18a8.png" className="w-[32px] h-[32px] mr-3" />
-                        <div className="text-[#ffffff99] text-[12px] font-normal leading-[0.44rem] pt-1.5 font-sora">
+                        <div className="text-[#ffffff99] text-[12px] font-normal leading-[1.2] pt-1.5 font-sora">
                             {t('team.addedToday')}
                             <div className="text-base text-white mt-[3px">{data.addedToday}</div> {/* You can update this with actual data */}
                         </div>

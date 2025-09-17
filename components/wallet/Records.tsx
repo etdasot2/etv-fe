@@ -27,7 +27,7 @@ const FundsRecords: React.FC = () => {
   const [currentFilter, setCurrentFilter] = useState('all');
   const [currentFilterDate, setCurrentFilterDate] = useState('');
   const { setGlobalLoading } = useLoading();
-
+console.log(currentFilterDate, "currentFilterDate")
 
   const loadTransactions = async (pageNumber: number, filter: string, filterDate: string) => {
     setLoading(true);
@@ -127,19 +127,32 @@ const FundsRecords: React.FC = () => {
       option1: [{
         key: '2025',
         label: "2025",
-      }],
-      option2: [
-        { key: 'mar', label: t('global.months.mar') },
-        { key: 'apr', label: t('global.months.apr') },
-        { key: 'may', label: t('global.months.may') },
-        { key: 'jun', label: t('global.months.jun') },
-        { key: 'jul', label: t('global.months.jul') },
-        { key: 'aug', label: t('global.months.aug') },
-        { key: 'sep', label: t('global.months.sep') },
-        { key: 'oct', label: t('global.months.oct') },
-        { key: 'nov', label: t('global.months.nov') },
-        { key: 'dec', label: t('global.months.dec') },
-      ],
+      },{
+        key: '2026',
+        label: "2026",
+      },],
+      option2: {
+        '2025': [
+          { key: 'sep', label: t('global.months.sep') },
+          { key: 'oct', label: t('global.months.oct') },
+          { key: 'nov', label: t('global.months.nov') },
+          { key: 'dec', label: t('global.months.dec') },
+        ],
+        '2026': [
+          { key: 'jan', label: t('global.months.jan') },
+          { key: 'feb', label: t('global.months.feb') },
+          { key: 'mar', label: t('global.months.mar') },
+          { key: 'apr', label: t('global.months.apr') },
+          { key: 'may', label: t('global.months.may') },
+          { key: 'jun', label: t('global.months.jun') },
+          { key: 'jul', label: t('global.months.jul') },
+          { key: 'aug', label: t('global.months.aug') },
+          { key: 'sep', label: t('global.months.sep') },
+          { key: 'oct', label: t('global.months.oct') },
+          { key: 'nov', label: t('global.months.nov') },
+          { key: 'dec', label: t('global.months.dec') },
+        ]
+      }
     }
   ];
   // const [loadingCancel, setLoadingCancel] = useState(false)
@@ -240,7 +253,7 @@ const FundsRecords: React.FC = () => {
                 className="text-[12px] w-full font-sora text-white flex items-center cursor-pointer"
                 onClick={() => { setIsOpenTimeRange(true) }}
               >
-                <div className="flex flex-1">
+                <div className="flex flex-1 leading-[1.1]">
                   {getFormattedDate()}
                 </div>
                 <div
@@ -274,10 +287,9 @@ const FundsRecords: React.FC = () => {
                 </span>
 
                 {transaction.category === 'withdraw' && transaction.status === 'processing' &&
-                  <button className="w-[110px] border border-[#ffce4b] text-[#A06500] cursor-default flex items-end justify-end mt-1 mb-1 text-end leading-[1.1] rounded-full pr-4 pl-4 p-1 text-[14px] font-medium"
+                  <button className="w-[110px] cursor-default flex items-end justify-end mt-1 mb-1 text-end leading-[1.1] rounded-full pr-4 pl-4 p-1 text-[14px] font-medium"
                     style={{
-                      background: 'linear-gradient(136deg, #FFEA8F, #FFD14D)',
-
+                      background: 'linear-gradient(-40deg, #f40208, #ff464b)',
                     }}
                     onClick={() => { handleCancelWithdrawal(transaction.withdrawalId) }}
                   // disabled={loadingCancel}
@@ -294,17 +306,13 @@ const FundsRecords: React.FC = () => {
 
           {!loading && filteredTransactions.length === 0 && (
             <div className="text-center text-white py-4">
-              {/* {t('wallet.noResults')} */}
-            No results found
-
+              {t('wallet.noResults')}
             </div>
           )}
 
           {!hasMore && filteredTransactions.length > 0 && (
             <div className="text-center text-[#bdbdbd] py-4 text-sm">
-              {/* {t('wallet.noMoreRecords')} */}
-            No more records
-
+              {t('wallet.noMoreRecords')}
             </div>
           )}
 

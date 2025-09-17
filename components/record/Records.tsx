@@ -128,11 +128,7 @@ export default function RecordsList() {
                 alt={reel.reel.description}
                 className="w-[112px] h-[142px] object-cover rounded-[13px]"
               />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="bg-black bg-opacity-50 rounded-full p-3">
-                  <Play className="w-8 h-8 text-white" />
-                </div>
-              </div>
+               
             </div>
             <div className="flex-1 p-4 pr-0 flex flex-col justify-between">
               <div className="flex flex-col">
@@ -148,7 +144,7 @@ export default function RecordsList() {
                 </div>
                 <div className="flex justify-between w-full mt-2 items-center">
                   <p className="text-[#ffffff99] font-sora text-[12px] font-medium">{t('record.viewEarnings')}:</p>
-                  <p className="text-[#ff4848] font-medium font-sora text-[16px]">{reel.earnings.toFixed(1)} USDT</p>
+                  <p className="text-[#eebc7a] font-semibold font-sora text-[16px]">{reel.earnings.toFixed(1)} USDT</p>
                 </div>
               </div>
             </div>
