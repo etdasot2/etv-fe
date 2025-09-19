@@ -11,7 +11,7 @@ const CitPartner = () => {
     const { t } = useTranslation();
 
     return (
-        <div className="bg-[#0f0f0f] text-white min-h-screen w-full bg-full relative"
+        <div className="bg-[#151515] text-white min-h-screen w-full bg-full relative"
         >
 
             <BackTitle
