@@ -7,6 +7,7 @@ import LanguageProvider from "@/providers/LanguageProvider";
 import { ModalProvider } from "@/context/modal-context";
 import { SecurityVerificationProvider } from "@/context/FundsPasswordContext";
 import { LoadingProvider } from "@/context/LoadingContext";
+import GlobalInfoSetup from "@/components/GlobalInfoSetup";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -70,6 +71,7 @@ export default function RootLayout({
           <I18nProvider>
             <LanguageProvider>
               <InfoModalProvider>
+                <GlobalInfoSetup />
                 <ModalProvider>
                   <SecurityVerificationProvider>
                     <div className="max-w-[435px] m-auto w-full">

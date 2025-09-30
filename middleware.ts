@@ -155,7 +155,7 @@ function isIndependentRoute(path: string): boolean {
 
 export async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname
-  const token = req.cookies.get("authToken")?.value
+  const token = req.cookies.get("authToken_v2")?.value
 
   console.log(`Processing path: ${path}`)
 

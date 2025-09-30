@@ -21,7 +21,7 @@ interface VerifyFundsPasswordData {
 export default function VerifyFundsPasswordForm() {
     const { t } = useTranslation();
     const [showPassword, setShowPassword] = useState(false);
-    const { setInfoText } = useInfoModal();
+    const { setInfoText } = useInfoModal(); 
     const [isFundsPasswordSet, setIsFundsPasswordSet] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 

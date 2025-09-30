@@ -1,5 +1,12 @@
 import axios from 'axios';
-import { getToken } from '@/lib/auth'; // Import the getToken function to retrieve JWT
+import { getToken, removeToken } from '@/lib/auth'; // Import the getToken function to retrieve JWT
+
+// Global function to show info modal message
+let globalSetInfoText: ((text: string) => void) | null = null;
+
+export const setGlobalInfoText = (setInfoText: (text: string) => void) => {
+    globalSetInfoText = setInfoText;
+};
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
@@ -16,6 +23,45 @@ export const apiClient = axios.create({
     baseURL: getBaseUrl(),
     timeout: 60000,
 });
+
+// Add response interceptor to handle token expiration
+apiClient.interceptors.response.use(
+    (response) => {
+        // If the request was successful, return the response
+        return response;
+    },
+    (error) => {
+        // Handle response errors
+        const isTokenExpired = 
+            error.response?.status === 401 || 
+            (error.response?.status === 500 && 
+             error.response?.data?.error === 'jwt expired');
+        
+        if (isTokenExpired) {
+            // Token is invalid or expired
+            console.log('Token expired or invalid, redirecting to login');
+            
+            // Clear the token and user data
+            removeToken();
+            
+            // Only redirect if we're in the browser (not during SSR)
+            if (typeof window !== 'undefined') {
+                // Show session expired message using your info modal
+                if (globalSetInfoText) {
+                    globalSetInfoText('Your session has expired. Please log in again.');
+                }
+                
+                // Wait 3 seconds before redirecting to give user time to read the message
+                setTimeout(() => {
+                    window.location.href = '/user/login';
+                }, 500);
+            }
+        }
+        
+        // Return the error so it can be handled by the calling function
+        return Promise.reject(error);
+    }
+);
 
 interface LoginData {
     identifier: string;
@@ -78,6 +124,7 @@ export const getProfileDetails = async () => {
     return response.data;
 };
 
+
 export const checkBalance = async () => {
     const token = getToken(); // Retrieve token from local storage or context
 
@@ -89,6 +136,7 @@ export const checkBalance = async () => {
 
     return response.data;
 };
+
 
 export const checkBalanceUSDCBEP20 = async () => {
     const token = getToken(); // Retrieve token from local storage or context
@@ -102,6 +150,7 @@ export const checkBalanceUSDCBEP20 = async () => {
     return response.data;
 };
 
+
 export const checkBalanceUSDCERC20 = async () => {
     const token = getToken(); // Retrieve token from local storage or context
 
@@ -114,6 +163,7 @@ export const checkBalanceUSDCERC20 = async () => {
     return response.data;
 };
 
+
 export const getWalletDetails = async () => {
     const token = getToken();
     if (!token) throw new Error('No token found');
@@ -123,6 +173,7 @@ export const getWalletDetails = async () => {
     });
     return response.data;
 };
+
 
 export const generatePaymentAddress = async (data: { amount: number }) => {
     const token = getToken();
@@ -198,6 +249,7 @@ export const fetchUserBalance = async () => {
     });
     return response.data;
 };
+
 
 
 export const fetchPowerItems = async (acceleratorId: string) => {
@@ -524,6 +576,7 @@ export const syncDgptDataToPro = async () => {
     return response.data;
 };
 
+
 export const syncProfit = async () => {
     const token = getToken();
     if (!token) throw new Error('No token found');
@@ -533,6 +586,7 @@ export const syncProfit = async () => {
     });
     return response.data;
 };
+
 
 export const syncProgress = async () => {
     const token = getToken();
@@ -544,6 +598,7 @@ export const syncProgress = async () => {
     return response.data;
 };
 
+
 export const syncInivtationDetails = async () => {
     const token = getToken();
     if (!token) throw new Error('No token found');
@@ -554,6 +609,7 @@ export const syncInivtationDetails = async () => {
     return response.data;
 };
 
+
 export const checkSyncRequest = async () => {
     const token = getToken();
     if (!token) throw new Error('No token found');
@@ -563,6 +619,7 @@ export const checkSyncRequest = async () => {
     });
     return response.data;
 };
+
 
 export const syncDataRequest = async () => {
     const token = getToken();
@@ -577,6 +634,7 @@ export const syncDataRequest = async () => {
     );
     return response.data;
 };
+
 
 // export const fetchPackages = async () => {
 //     const token = getToken();
@@ -602,6 +660,7 @@ export const purchasePackage = async (packageId: string) => {
     );
     return response.data;
 };
+
 
 export const fetchPackagesAndPurchased = async () => {
     const token = getToken();
@@ -659,6 +718,7 @@ export const fetchVipPackage = async (packageId: string) => {
     return response.data;
 };
 
+
 export const likeReel = async (reelId: string, packageId: string) => {
     const token = getToken();
     if (!token) throw new Error('No token found');
@@ -691,6 +751,7 @@ export const fetchUserPackagesAndLikes = async () => {
     return response.data;
 };
 
+
 export const fetchPackagesAndLikes = async () => {
     const token = getToken(); // Assuming getToken is a function that retrieves the JWT token
     if (!token) throw new Error('No token found');
@@ -707,6 +768,7 @@ export const fetchPackagesAndLikes = async () => {
 };
 
 
+
 export const fetchLikedReels = async (skip: number, limit: number) => {
     const token = getToken(); // Assuming getToken is a function that retrieves the JWT token
     if (!token) throw new Error('No token found');
@@ -719,6 +781,7 @@ export const fetchLikedReels = async (skip: number, limit: number) => {
     return response.data;
 };
 
+
 export const fetchRevenueStats = async () => {
     const token = getToken(); // Assuming getToken is a function that retrieves the JWT token
     if (!token) throw new Error("No token found");
@@ -730,6 +793,7 @@ export const fetchRevenueStats = async () => {
     return response.data;
 };
 
+
 export const fetchPopularReels = async () => {
     const token = getToken(); // Function to get JWT token
     if (!token) throw new Error('No token found');
@@ -740,6 +804,7 @@ export const fetchPopularReels = async () => {
 
     return response.data;
 };
+
 
 export const sendVerificationCode = async (): Promise<any> => {
     const token = getToken(); // Assuming you have a function to get JWT token
@@ -753,6 +818,7 @@ export const sendVerificationCode = async (): Promise<any> => {
 
     return response.data;
 };
+
 
 export const changePassword = async (data: { verificationCode: string; newPassword: string }): Promise<any> => {
     const token = getToken(); // Assuming you have a function to get JWT token
@@ -784,6 +850,7 @@ export const getUserDetails = async () => {
 
     return response.data;
 };
+
 
 export const changeFundsPassword = async (data: { verificationCode: string, newFundsPassword: string, isBind: boolean }) => {
     const token = getToken(); // Function to get JWT token
@@ -837,6 +904,7 @@ export const getReferralChain = async () => {
 
     return response.data;
 };
+
 
 export const initiateBuyPackage = async (packageId: string) => {
     const token = getToken(); // Retrieve JWT token
@@ -1144,6 +1212,7 @@ export const checkKYCSubmission = async () => {
     return response.data;
 };
 
+
 export const checkUserNotifications = async () => {
     const token = getToken(); // Get the JWT token from your storage/context
     if (!token) {
@@ -1158,6 +1227,7 @@ export const checkUserNotifications = async () => {
 
     return response.data;
 };
+
 
 export const checkNotificationsByType = async (type: string) => {
     const token = getToken(); // Assume you have a function that retrieves the JWT token
@@ -1175,6 +1245,7 @@ export const checkNotificationsByType = async (type: string) => {
     return response.data;
 };
 
+
 export const fetchNotificationById = async (id: string) => {
     const token = getToken(); // Get the JWT token
 
@@ -1191,6 +1262,7 @@ export const fetchNotificationById = async (id: string) => {
     return response.data;
 };
 
+
 export const fetchTeamStats = async () => {
     const token = getToken(); // Get the JWT token
 
@@ -1206,6 +1278,7 @@ export const fetchTeamStats = async () => {
 
     return response.data;
 };
+
 
 // export const fetchTeamMembers = async (page: number, limit: number, generation: string) => {
 //     const token = getToken();
@@ -1321,6 +1394,7 @@ export const fetchTutorialById = async (id: string) => {
 };
 
 
+
 export const fetchNoticeById = async (id: string) => {
     const token = getToken(); // Get the JWT token
 
@@ -1336,6 +1410,7 @@ export const fetchNoticeById = async (id: string) => {
 
     return response.data;
 };
+
 
 export const fetchUnreadNotificationsCount = async () => {
     const token = getToken(); // Get the JWT token
@@ -1369,6 +1444,7 @@ export const checkBannerStatus = async () => {
     return response.data;
 };
 
+
 export const getTasksByType = async (type: string) => {
     const token = getToken();
     if (!token) throw new Error('No token found');
@@ -1378,6 +1454,7 @@ export const getTasksByType = async (type: string) => {
     });
     return response.data;
 };
+
 
 // New function for claiming tasks
 export const claimTask = async (taskId: string) => {
@@ -1392,6 +1469,7 @@ export const claimTask = async (taskId: string) => {
     );
     return response.data;
 };
+
 
 export const getOrCreateDepositAddress = async () => {
     const token = getToken(); // Get the JWT token
@@ -1447,6 +1525,7 @@ export const setDefaultLanguage = async (languageCode: string) => {
     return response.data;
 };
 
+
 export const setUserLocation = async (defaultLanguage?: string) => {
     const token = getToken(); // Get the JWT token
 
@@ -1470,6 +1549,7 @@ export const setUserLocation = async (defaultLanguage?: string) => {
     return response.data;
 };
 
+
 interface FriendsStats {
     totalFriends: number;
     activeFriends: number;
@@ -1492,6 +1572,7 @@ export const getFriendsStats = async (generation?: string) => {
 
     return response.data;
 };
+
 
 export const bindAddress = async (data: {
     rechargeChannel: string;
@@ -1693,6 +1774,7 @@ export const fetchRevenueStatsShorts = async () => {
     return response.data;
 };
 
+
 export const fetchPackagesAndLikesShorts = async () => {
     const token = getToken(); // Assuming getToken is a function that retrieves the JWT token
     if (!token) throw new Error('No token found');
@@ -1703,6 +1785,7 @@ export const fetchPackagesAndLikesShorts = async () => {
 
     return response.data;
 };
+
 
 
 export const agentCheck = async () => {
@@ -1819,6 +1902,7 @@ export const telegramReward = async (telegramUsername: string) => {
 
     return response.data;
 };
+
 
 export const claimMission = async (missionId: string) => {
     const token = getToken();

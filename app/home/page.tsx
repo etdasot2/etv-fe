@@ -21,7 +21,7 @@ import AnimationPage from '@/components/AnimationPage'
 const images = [
   // '/assets/bs1.png',
   '/assets/ld1.png',
-  '/assets/lbdla1.png',
+  // '/assets/lbdla1.png',
   
   '/assets/lbd12.png',
 
