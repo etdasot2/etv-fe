@@ -16,7 +16,7 @@ const getBaseUrl = () => {
 
     return isDevelopment
         ? 'http://localhost:5003/api'
-        : 'https://api.eternovafilms.com/api';
+        : 'https://etv-be.vercel.app/api';
 };
 
 export const apiClient = axios.create({
